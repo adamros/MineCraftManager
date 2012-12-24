@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mcmanager.cpp \
-    config.cpp
+    config.cpp \
+    version.cpp
 
 HEADERS  += mcmanager.h \
-    config.h
+    config.h \
+    version.h
 
 FORMS    += mcmanager.ui

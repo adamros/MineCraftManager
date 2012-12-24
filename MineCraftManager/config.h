@@ -9,9 +9,11 @@ class Config
 public:
     Config();
 
-    QMap configMap;
+    QMap<QString,QVariant> configMap;
 
-    void parseConfigFile(const QString &file);
+    void parseConfigFile();
+    void updateConfigFile();
+    void createConfigFile();
 };
 
 #endif // CONFIG_H
