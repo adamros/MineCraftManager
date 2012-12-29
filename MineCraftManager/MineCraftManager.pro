@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webkit
+QT       += core gui webkit network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,10 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mcmanager.cpp \
     config.cpp \
-    version.cpp
+    version.cpp \
+    loginutils.cpp \
+    update.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
-    version.h
+    version.h \
+    loginutils.h \
+    update.h
 
 FORMS    += mcmanager.ui

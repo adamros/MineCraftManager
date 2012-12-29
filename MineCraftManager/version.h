@@ -3,11 +3,6 @@
 
 #include <QtCore>
 
-#define MAJOR 1
-#define MINOR 0
-#define RELEASE 1
-#define BUILD 1
-
 class Version
 {
 public:
@@ -16,6 +11,11 @@ public:
     QString getVersion();
 
     bool isNewer(const QString &str);
+private:
+    int MAJOR;
+    int MINOR;
+    int RELEASE;
+    int BUILD;
 };
 
 #endif // VERSION_H

@@ -2,12 +2,15 @@
 
 Version::Version()
 {
+    MAJOR = 1;
+    MINOR = 0;
+    RELEASE = 1;
+    BUILD = 11;
 }
 
 QString Version::getVersion()
 {
-
-    return "";
+    return QString(MAJOR) + "." + QString(MINOR) + "." + QString(RELEASE) + "." + QString(BUILD);
 }
 
 bool Version::isNewer(const QString &str)
@@ -46,4 +49,6 @@ bool Version::isNewer(const QString &str)
         return true;
     else if (strlist[0] < MAJOR)
         return false;
+
+    return false;
 }

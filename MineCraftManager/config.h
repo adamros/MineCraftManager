@@ -11,9 +11,9 @@ public:
 
     QMap<QString,QVariant> configMap;
 
-    void parseConfigFile();
-    void updateConfigFile();
-    void createConfigFile();
+    void readConfig();
+    void updateConfig();
+    void createConfig();
 };
 
 #endif // CONFIG_H
