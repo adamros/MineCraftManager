@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>550</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
-    <height>550</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>550</height>
+    <width>1000</width>
+    <height>600</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>400</y>
+      <y>450</y>
       <width>361</width>
       <height>141</height>
      </rect>
@@ -135,25 +135,6 @@
       <string>Zapamiętaj moje dane</string>
      </property>
     </widget>
-    <widget class="QLabel" name="serverLabel">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>241</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://alpha.ddns.us&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Lixium Polska - strona główna&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QPushButton" name="configButton">
      <property name="geometry">
       <rect>
@@ -171,10 +152,10 @@
    <widget class="QWebView" name="mainWebView">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>320</x>
       <y>10</y>
-      <width>361</width>
-      <height>381</height>
+      <width>671</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="contextMenuPolicy">
@@ -184,6 +165,172 @@
      <url>
       <string>about:blank</string>
      </url>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>450</y>
+      <width>411</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Aktualizacje</string>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zainstalowana wersja klienta:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mcinstalledver">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Najnowsza wersja klienta:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mcrecentver">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>40</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Status:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="updatestatus">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>60</y>
+       <width>351</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="updateProgressBar">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>391</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="updateClientButton">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>110</y>
+       <width>191</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Zaktualizuj</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="checkClientUpdates">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>191</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sprawdź aktualizacje</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>211</width>
+      <height>61</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wybierz serwer:</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>450</y>
+      <width>191</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Status i informacje serwera</string>
     </property>
    </widget>
   </widget>

@@ -4,10 +4,10 @@
 #include <QtCore>
 #include <QtNetwork/QtNetwork>
 
-class loginutils
+class Loginutils
 {
 public:
-    loginutils();
+    Loginutils();
 
     void doLogin(QString username, QString password);
     void playCached(QString username, bool demo);

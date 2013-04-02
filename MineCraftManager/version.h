@@ -11,6 +11,8 @@ public:
     QString getVersion();
 
     bool isNewer(const QString &str);
+
+    bool compare(QString ver1, QString ver2);
 private:
     int MAJOR;
     int MINOR;

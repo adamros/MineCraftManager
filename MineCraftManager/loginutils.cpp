@@ -1,10 +1,10 @@
 #include "loginutils.h"
 
-loginutils::loginutils()
+Loginutils::loginutils()
 {
 }
 
-void Login::doLogin(QString username, QString password)
+void Loginutils::doLogin(QString username, QString password)
 {
     QNetworkAccessManager *nam = new QNetworkAccessManager(this);
     QNetworkRequest req(QUrl("http://login.minecraft.net/"));
@@ -16,9 +16,11 @@ void Login::doLogin(QString username, QString password)
     connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
     nam->post(req, postData);
+
+    delete nam;
 }
 
-void Login::playCached(QString username, bool demo)
+void Loginutils::playCached(QString username, bool demo)
 {
     if (username.isEmpty() || username.isNull() || username.length() <= 0)
         username = "Player";
@@ -28,7 +30,7 @@ void Login::playCached(QString username, bool demo)
     this->sessionId = "1";
 }
 
-void Login::replyFinished(QNetworkReply *reply)
+void Loginutils::replyFinished(QNetworkReply *reply)
 {
     if (reply->error() == QNetworkReply::NoError)
     {

@@ -1,7 +1,11 @@
 #ifndef MCMANAGER_H
 #define MCMANAGER_H
 
-#include <QMainWindow>
+#include <QtCore>
+#include <QtGui>
+#include "loginutils.h"
+#include "update.h"
+#include "version.h"
 
 namespace Ui {
 class MCManager;
@@ -17,6 +21,12 @@ public:
     
 private:
     Ui::MCManager *ui;
+
+public slots:
+
+private slots:
+
+signals:
 };
 
 #endif // MCMANAGER_H

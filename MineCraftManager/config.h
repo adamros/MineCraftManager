@@ -9,11 +9,12 @@ class Config
 public:
     Config();
 
-    QMap<QString,QVariant> configMap;
+    bool readConfig();
+    bool updateConfig();
+    bool createConfig();
 
-    void readConfig();
-    void updateConfig();
-    void createConfig();
+private:
+    QMap<QString, QVariant> settingsMap;
 };
 
 #endif // CONFIG_H

@@ -17,12 +17,22 @@ SOURCES += main.cpp\
     config.cpp \
     version.cpp \
     loginutils.cpp \
-    update.cpp
+    update.cpp \
+    aboutdialog.cpp \
+    configdialog.cpp \
+    ziputils.cpp \
+    query.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
     version.h \
     loginutils.h \
-    update.h
+    update.h \
+    aboutdialog.h \
+    configdialog.h \
+    ziputils.h \
+    query.h
 
-FORMS    += mcmanager.ui
+FORMS    += mcmanager.ui \
+    aboutdialog.ui \
+    configdialog.ui

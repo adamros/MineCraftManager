@@ -4,12 +4,12 @@ Config::Config()
 {
 }
 
-void Config::createConfig()
+bool Config::createConfig()
 {
 
 }
 
-void Config::updateConfig()
+bool Config::updateConfig()
 {
     QDomDocument doc("configuration");
     QFile file("config.xml");
@@ -26,7 +26,7 @@ void Config::updateConfig()
     file.close();
 }
 
-void Config::readConfig()
+bool Config::readConfig()
 {
     QDomDocument doc("configuration");
     QFile file("config.xml");
@@ -42,24 +42,16 @@ void Config::readConfig()
 
     file.close();
 
-    QDomElement docElement = doc.documentElement();
-    QDomNodeList docNodeList = docElement.elementsByTagName("general").firstChild();
+    QDomElement root = doc.documentElement();
 
-    while( !docNodeList.isNull() )
+    if (root.tagName() != "mcm")
+        qDebug() << "XML configuration file not valid!";
+
+    QDomElement general = root.firstChildElement("general");
+    QDomElement generalChild = general.firstChildElement();
+
+    while (!generalChild.isNull())
     {
-        if( docNodeList.isElement() )
-        {
-          QDomElement element = docNodeList.toElement();
-          qDebug() << "ELEMENT" << element.tagName();
-          qDebug() << "ELEMENT ATTRIBUTE NAME" << element.attribute( "name", "not set" );
-        }
-
-        if( docNodeList.isText() )
-        {
-          QDomText text = docNodeList.toText();
-          qDebug() << text.data();
-        }
-
-        docNodeList = docNodeList.nextSibling();
+        if (generalChild.tagName() == "")
     }
 }
