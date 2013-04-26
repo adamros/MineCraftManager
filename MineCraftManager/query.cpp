@@ -1,6 +1,6 @@
 #include "query.h"
 
-Query::Query(QHostAddress ip, int port, int timeout)
+Query(QHostAddress ip, int port, int timeout)
 {
     if (port == 0 || timeout <= 0)
         return;

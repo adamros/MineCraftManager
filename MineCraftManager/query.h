@@ -8,8 +8,6 @@
 class Query : public QUdpSocket
 {
 public:
-    Query();
-
     Query(QHostAddress ip, int port, int timeout = 3);
 
     void isOnline();
@@ -18,8 +16,8 @@ public:
     void getInfo();
 
 private:
-    const int STATISTIC = 0x00;
-    const int HANDSHAKE = 0x09;
+    int STATISTIC = 0x00;
+    int HANDSHAKE = 0x09;
 
     QUdpSocket *socket;
 };

@@ -1,6 +1,6 @@
 #include "loginutils.h"
 
-Loginutils::loginutils()
+Loginutils::Loginutils()
 {
 }
 
@@ -60,4 +60,14 @@ void Loginutils::replyFinished(QNetworkReply *reply)
     }
     else
         qDebug() << reply->errorString();
+}
+
+short Loginutils::getErrorCode()
+{
+    return this->errCode;
+}
+
+QString Loginutils::getSID()
+{
+    return this->sessionId;
 }

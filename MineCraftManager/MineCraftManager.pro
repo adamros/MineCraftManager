@@ -20,8 +20,8 @@ SOURCES += main.cpp\
     update.cpp \
     aboutdialog.cpp \
     configdialog.cpp \
-    ziputils.cpp \
-    query.cpp
+    query.cpp \
+    updateutils.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
@@ -30,8 +30,8 @@ HEADERS  += mcmanager.h \
     update.h \
     aboutdialog.h \
     configdialog.h \
-    ziputils.h \
-    query.h
+    query.h \
+    updateutils.h
 
 FORMS    += mcmanager.ui \
     aboutdialog.ui \

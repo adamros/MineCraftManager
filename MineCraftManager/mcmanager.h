@@ -6,6 +6,7 @@
 #include "loginutils.h"
 #include "update.h"
 #include "version.h"
+#include "config.h"
 
 namespace Ui {
 class MCManager;
@@ -18,11 +19,14 @@ class MCManager : public QMainWindow
 public:
     explicit MCManager(QWidget *parent = 0);
     ~MCManager();
+
+    Config *configuration;
     
 private:
     Ui::MCManager *ui;
 
 public slots:
+    void receiveMessage(QString type, QString message);
 
 private slots:
 

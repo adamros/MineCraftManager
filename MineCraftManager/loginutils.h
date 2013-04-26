@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <QtNetwork/QtNetwork>
 
-class Loginutils
+class Loginutils : public QObject
 {
 public:
     Loginutils();
@@ -12,14 +12,17 @@ public:
     void doLogin(QString username, QString password);
     void playCached(QString username, bool demo);
 
-protected:
+    short getErrorCode();
+    QString getSID();
+
+private:
     short errCode;
 
     bool demo;
-    QVariant latestVer;
+    QString latestVer;
     QString downloadTicket;
     QString username;
-    QVariant sessionId;
+    QString sessionId;
 
 private slots:
     void replyFinished(QNetworkReply *reply);

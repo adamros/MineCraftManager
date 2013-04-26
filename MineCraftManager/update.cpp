@@ -1,78 +1,81 @@
 #include "update.h"
 
-Update::Update()
+Update::Update(Type type) : QObject(parent), downloaded(0), total(0)
 {
     updateStatus = IDLE;
-    ver = 0;
+    upType = type;
+    version = new Version();
+    nam = new QNetworkAccessManager(this);
+    parser = new Config(Config::UPDATE);
+    updateLauncherUrl = "http://download.lixium.pl/launcher/client/cupdate.xml";
+    updateClientUrl = "http://download.lixium.pl/launcher/lupdate.xml";
 }
 
-bool Update::isCached()
+void Update::checkLauncherUpdate()
 {
 
 }
 
-QString Update::checkUpdates()
+void Update::chechClientUpdate()
 {
 
 }
 
-bool Update::checkLauncherUpdate(QString version)
+void Update::doLauncherUpdate()
 {
-    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
-    QNetworkRequest req(QUrl("http://download.lixium.pl/check.php"));
 
-    QString data = QString("version=%1").arg(Version::getVersion());
-    QUrl encData = QUrl(data).toEncoded();
-
-    QByteArray postData;
-    postData.append(encData);
-
-    connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-
-    nam->post(req, postData);
-
-    delete nam;
 }
 
-bool Update::downloadFile(QUrl *url, QString filename)
+void Update::doClientUpdate()
 {
-    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
-    QNetworkRequest req(&url);
 
-    connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*));
+}
 
-    QNetworkReply *reply = nam->get(req);
-    QByteArray *data = reply->readAll();
+void Update::addToQueue(const QUrl &url)
+{
+    if (downloadQueue.isEmpty())
+        QTimer::singleShot(0, this, SLOT(downloadNext()));
 
-    QFile *fdest = new QFile(filename);
+    //downloadQueue.enqueue(url);
+    ++total;
+}
 
-    if (!fdest->open(QFile::WriteOnly))
-    {
-        qDebug() << "Creating file FAILED!";
-    }
+QString Update::getFileName(const QUrl &url)
+{
+    QString path = url.path();
+    QString basename = QFileInfo(path).fileName();
 
-    fdest->write(data);
+    if (basename.isEmpty())
+        basename = "download";
 
-    fdest->close();
+    return basename;
+}
 
-    delete nam;
+void Update::downloadNext()
+{
+    if (downloadQueue.isEmpty())
+        emit sendMessage("information", "Zakończono pobieranie plików");
+
+    UpFile *dequeue = downloadQueue.dequeue();
+
+    QString filename = getFileName(dequeue->url);
 }
 
 void Update::replyFinished(QNetworkReply *reply)
 {
     if (reply->error() == QNetworkReply::NoError)
     {
-        qDebug() << "Download successful!";
-
-        int response = reply->readAll();
-
-        if (response == 0)
-        {
-            ver = response;
-            qDebug() << "No new updates available";
-        }
-        else ver = response;
+        ++downloaded;
     }
     else
-        qDebug() << reply->error();
+        emit sendMessage("error", reply->errorString());
+
+    currentDownload->deleteLater();
+}
+
+Update::~Update()
+{
+    delete this->version;
+    delete this->nam;
+    delete this;
 }
