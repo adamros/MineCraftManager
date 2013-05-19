@@ -37,11 +37,11 @@ public:
     Version *version;
 
     QString getFileName(const QUrl &url);
-    void addToQueue(const QUrl &url);
+    void addToQueue(const UpFile *file);
 
     void checkLauncherUpdate();
     void doLauncherUpdate();
-    void chechClientUpdate();
+    void checkClientUpdate();
     void doClientUpdate();
 
 signals:
@@ -58,15 +58,18 @@ private:
     QFile output;
     int downloaded, total;
     Config *parser;
+    Config *configuration;
 
     struct UpFile {
         QUrl &url;
+        short type; // 0 - xml data, 1 - files to update
         QString dir;
-        QString hash;
+        QVariant hash;
     };
 
 private slots:
-    void replyFinished(QNetworkReply *reply);
+    void replyFinished();
+    void readyRead();
     void downloadNext();
 };
 

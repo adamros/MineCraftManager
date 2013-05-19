@@ -21,7 +21,7 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     configdialog.cpp \
     query.cpp \
-    updateutils.cpp
+    fileutils.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
@@ -31,7 +31,7 @@ HEADERS  += mcmanager.h \
     aboutdialog.h \
     configdialog.h \
     query.h \
-    updateutils.h
+    fileutils.h
 
 FORMS    += mcmanager.ui \
     aboutdialog.ui \

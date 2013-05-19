@@ -17,14 +17,6 @@ public:
 
     Type confType;
 
-    void parseFile(QString filename);
-
-    void writeFile(QString filename);
-
-signals:
-    void sendMessage(QString type, QString message);
-
-private:
     // Program config
     QMap< QString, QMap<QString, QString> > general;
     QMap< QString, QMap<QString, QString> > jvm;
@@ -34,6 +26,14 @@ private:
     QMap< QString, QMap<QString, QString> > main;
     QMultiMap< QString, QMap<QString, QString> > files;
 
+    void parseFile(QString filename);
+
+    void writeFile(QString filename);
+
+signals:
+    void sendMessage(QString type, QString message);
+
+private:
     QString currentNode;
 
     void parseElement(QXmlStreamReader &xml);
