@@ -21,7 +21,10 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     configdialog.cpp \
     query.cpp \
-    fileutils.cpp
+    fileutils.cpp \
+    hashcalc.cpp \
+    splashscreen.cpp \
+    launcherclass.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
@@ -31,8 +34,16 @@ HEADERS  += mcmanager.h \
     aboutdialog.h \
     configdialog.h \
     query.h \
-    fileutils.h
+    fileutils.h \
+    hashcalc.h \
+    splashscreen.h \
+    launcherclass.h \
+    enumstruct.h
 
 FORMS    += mcmanager.ui \
     aboutdialog.ui \
-    configdialog.ui
+    configdialog.ui \
+    splashscreen.ui
+
+RESOURCES += \
+    resources.qrc

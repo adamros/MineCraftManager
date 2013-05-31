@@ -1,22 +1,12 @@
 #include "query.h"
 
-Query(QHostAddress ip, int port, int timeout)
+Query::Query(QString address, int port)
 {
-    if (port == 0 || timeout <= 0)
-        return;
+    this->addr = QHostAddress(address);
+    this->port = port;
+}
 
-    socket = new QUdpSocket();
-
-    try {
-        socket->bind(ip, port);
-    }
-    catch (SocketError)
-    {
-        socket->close();
-    }
-
-    if (!socket || socket->error())
-        return;
-
-    socket->close();
+Query::~Query()
+{
+    delete this->socket;
 }

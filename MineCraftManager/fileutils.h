@@ -4,19 +4,22 @@
 #include <QObject>
 #include <QtCore>
 
+#include "hashcalc.h"
+
 class FileUtils : public QObject
 {
     Q_OBJECT
 public:
     explicit FileUtils(QObject *parent = 0);
 
-    void scanDir(const QString dirName);
+    void scanDir(QString dirName = "");
     
 signals:
     
 public slots:
     
 private:
+    HashCalc *hashThread;
     QMap<QString, QString> fileMap;
 };
 

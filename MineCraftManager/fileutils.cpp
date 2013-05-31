@@ -3,9 +3,10 @@
 FileUtils::FileUtils(QObject *parent) :
     QObject(parent)
 {
+    hashThread = new HashCalc();
 }
 
-void FileUtils::scanDir(const QString dirName)
+void FileUtils::scanDir(QString dirName)
 {
     QDir dir(dirName);
     QFileInfoList list = dir.entryInfoList();
@@ -24,7 +25,10 @@ void FileUtils::scanDir(const QString dirName)
         }
         else
         {
+            hashThread->addFile(info);
             //qDebug() << "Path: " << info.filePath() << " Name: " << info.fileName() << endl;
         }
     }
+
+    hashThread->start();
 }

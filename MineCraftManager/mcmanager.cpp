@@ -7,24 +7,17 @@ MCManager::MCManager(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    configuration = new Config(Config::CONFIG);
+    configuration = new Config(CONFIG);
 }
 
 void MCManager::receiveMessage(QString type, QString message)
 {
-    switch (type)
-    {
-    case "error":
+    if (type == "error")
         QMessageBox::critical(this, "Błąd", message);
-        break;
-    case "warning":
+    else if (type == "warning")
         QMessageBox::warning(this, "Ostrzeżenie", message);
-        break;
-    case "information":
-    default:
+    else
         QMessageBox::information(this, "Informacja", message);
-        break;
-    }
 }
 
 MCManager::~MCManager()

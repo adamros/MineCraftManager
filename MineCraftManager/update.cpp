@@ -1,13 +1,13 @@
 #include "update.h"
 
-Update::Update(Type type, Config *configuration) : QObject(parent), downloaded(0), total(0)
+Update::Update(UpdateType type, Config *configuration) : downloaded(0), total(0)
 {
     this->updateStatus = IDLE;
     this->upType = type;
     this->configuration = configuration;
     this->version = new Version();
     this->nam = new QNetworkAccessManager(this);
-    this->parser = new Config(Config::UPDATE);
+    this->parser = new Config(UPDATE);
     this->updateClientUrl = "http://download.lixium.pl/launcher/client/cupdate.xml";
     this->updateLauncherUrl = "http://download.lixium.pl/launcher/lupdate.xml";
 }
@@ -20,7 +20,8 @@ void Update::checkLauncherUpdate()
     xml->dir = "tmp/";
     xml->hash = NULL;
 
-    this->addToQueue(xml);
+    this->addToQueue(*xml);
+    delete xml;
 }
 
 void Update::checkClientUpdate()
@@ -30,6 +31,9 @@ void Update::checkClientUpdate()
     xml->type = 0;
     xml->dir = "tmp/";
     xml->hash = NULL;
+
+    this->addToQueue(*xml);
+    delete xml;
 }
 
 void Update::doLauncherUpdate()
@@ -41,7 +45,7 @@ void Update::doClientUpdate()
 
 }
 
-void Update::addToQueue(const UpFile *file)
+void Update::addToQueue(const UpFile file)
 {
     if (downloadQueue.isEmpty())
         QTimer::singleShot(0, this, SLOT(downloadNext()));
@@ -66,12 +70,11 @@ void Update::downloadNext()
     if (downloadQueue.isEmpty())
         emit sendMessage("information", "Zakończono pobieranie plików");
 
-    UpFile *dequeue = downloadQueue.dequeue();
+    UpFile dequeue = downloadQueue.dequeue();
 
-    QString filename = getFileName(dequeue->url);
-    QDir::mkpath(dequeue->dir);
-    QDir::setCurrent(dequeue->dir);
-    output.setFileName(dequeue->dir + filename);
+    QString filename = getFileName(dequeue.url);
+    directory.mkpath(dequeue.dir);
+    output.setFileName(dequeue.dir + filename);
 
     if (!output.open(QIODevice::WriteOnly))
     {
@@ -80,11 +83,11 @@ void Update::downloadNext()
         return;
     }
 
-    QNetworkRequest req(dequeue->url);
+    QNetworkRequest req(dequeue.url);
     currentDownload = nam->get(req);
 
-    connect(currentDownload, SIGNAL(finished()), this, replyFinished());
-    connect(currentDownload, SIGNAL(readyRead()), this, readyRead());
+    this->connect(currentDownload, SIGNAL(finished()), this, SLOT(replyFinished()));
+    this->connect(currentDownload, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }
 
 void Update::replyFinished()
@@ -96,7 +99,7 @@ void Update::replyFinished()
         ++downloaded;
     }
     else
-        emit sendMessage("error", reply->errorString());
+        emit sendMessage("error", currentDownload->errorString());
 
     currentDownload->deleteLater();
     downloadNext();

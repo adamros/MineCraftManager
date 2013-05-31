@@ -6,24 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>450</height>
+    <width>441</width>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: url(:/splash/resources/logolixium.png) top center no-repeat;</string>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
      <x>184</x>
-     <y>420</y>
+     <y>330</y>
      <width>81</width>
      <height>23</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent</string>
+   </property>
    <property name="text">
     <string>Zamknij</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>401</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Lixium MC Manager v1.0.0.96&lt;br/&gt;Autor: &lt;/span&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;adamros&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Grafika: &lt;/span&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;ReQntar&lt;/span&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;Vivx&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Strona domowa: &lt;/span&gt;&lt;a href=&quot;http://lixium.pl&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://lixium.pl&lt;br/&gt;&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Forum Minecraft: &lt;/span&gt;&lt;a href=&quot;http://minecraft.lixium.pl/forum&quot;&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://minecraft.lixium.pl/forum&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;Wszystkie prawa zastrzeżone Lixium ® 2012-2013&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#ff0000;&quot;&gt;Modyfikowanie kodu launchera, jego dekompilacja i&lt;br/&gt;rozpowszechnianie oraz kopiowanie grafiki jest zabronione!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

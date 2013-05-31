@@ -4,18 +4,16 @@
 #include <QtCore>
 #include <QtXml/QtXml>
 
+#include "enumstruct.h"
+
 class Config : public QObject
 {
+    Q_OBJECT
 public:
     Config();
-    Config(Type type);
+    Config(ConfigType type);
 
-    enum Type {
-        CONFIG,
-        UPDATE
-    };
-
-    Type confType;
+    ConfigType confType;
 
     // Program config
     QMap< QString, QMap<QString, QString> > general;
@@ -36,7 +34,7 @@ signals:
 private:
     QString currentNode;
 
-    void parseElement(QXmlStreamReader &xml);
+    void parseElement(QXmlStreamReader *xml);
 };
 
 #endif // CONFIG_H

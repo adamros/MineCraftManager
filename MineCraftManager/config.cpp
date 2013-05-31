@@ -5,7 +5,7 @@ Config::Config()
     confType = UPDATE;
 }
 
-Config::Config(Type type)
+Config::Config(ConfigType type)
 {
     confType = type;
 }
@@ -27,61 +27,58 @@ void Config::parseFile(QString filename)
     {
         QXmlStreamReader::TokenType token = xmlReader->readNext();
 
-        if (token = QXmlStreamReader::StartDocument)
+        if (token == QXmlStreamReader::StartDocument)
             continue;
 
-        if (token = QXmlStreamReader::StartElement)
+        if (token == QXmlStreamReader::StartElement)
         {
             if (xmlReader->name() == "general" || xmlReader->name() == "jvm" || xmlReader->name() == "main" || xmlReader->name() == "files")
             {
-                this->currentNode = xmlReader->name();
+                this->currentNode = xmlReader->name().toString();
                 this->parseElement(xmlReader);
             }
         }
     }
 
     xmlReader->clear();
-    delete this->currentNode;
     delete xmlReader;
     delete file;
 }
 
-void Config::parseElement(QXmlStreamReader &xml)
+void Config::parseElement(QXmlStreamReader *xml)
 {
-    while (!(xml.isEndElement() && xml.name() == currentNode))
+    while (!(xml->isEndElement() && xml->name() == currentNode))
     {
-        xml.readNext();
+        xml->readNext();
 
-        if (xml.isStartElement())
+        if (xml->isStartElement())
         {
             QMap<QString, QString> tempAttr;
-            tempAttr.insert("text", xml.readElementText());
+            tempAttr.insert("text", xml->readElementText());
 
-            foreach (const QXmlStreamAttribute &attributes, xml.attributes()) {
-                tempAttr.insert(attributes.name(), attributes.value());
+            foreach (const QXmlStreamAttribute &attributes, xml->attributes()) {
+                tempAttr.insert(attributes.name().toString(), attributes.value().toString());
             }
 
             if (this->currentNode == "general")
             {
-                this->general.insert(xml.name(), tempAttr);
+                this->general.insert(xml->name().toString(), tempAttr);
             }
             else if (this->currentNode == "jvm")
             {
-                this->jvm.insert(xml.name(), tempAttr);
+                this->jvm.insert(xml->name().toString(), tempAttr);
             }
             else if (this->currentNode == "main")
             {
-                this->main.insert(xml.name(), tempAttr);
+                this->main.insert(xml->name().toString(), tempAttr);
             }
             else if (this->currentNode == "files")
             {
-                this->files.insert(xml.name(), tempAttr);
+                this->files.insert(xml->name().toString(), tempAttr);
             }
             else {
                 continue;
             }
-
-            delete tempAttr;
         }
     }
 }
@@ -105,7 +102,7 @@ void Config::writeFile(QString filename)
         // General section
         xmlWriter->writeStartElement("general");
 
-        foreach (QString key, general)
+        foreach (QString key, general.keys())
         {
             xmlWriter->writeStartElement(key);
 
@@ -125,7 +122,7 @@ void Config::writeFile(QString filename)
         // JVM section
         xmlWriter->writeStartElement("jvm");
 
-        foreach (QString key, jvm)
+        foreach (QString key, jvm.keys())
         {
             xmlWriter->writeStartElement(key);
 
@@ -145,7 +142,7 @@ void Config::writeFile(QString filename)
         // Localfiles section
         xmlWriter->writeStartElement("localfiles");
 
-        foreach (QString key, files)
+        foreach (QString key, files.keys())
         {
             xmlWriter->writeStartElement(key);
 
@@ -167,7 +164,7 @@ void Config::writeFile(QString filename)
         // Main section
         xmlWriter->writeStartElement("main");
 
-        foreach (QString key, main)
+        foreach (QString key, main.keys())
         {
             xmlWriter->writeStartElement(key);
 
@@ -187,7 +184,7 @@ void Config::writeFile(QString filename)
         // Files section
         xmlWriter->writeStartElement("files");
 
-        foreach (QString key, files)
+        foreach (QString key, files.keys())
         {
             xmlWriter->writeStartElement(key);
 

@@ -9,35 +9,18 @@
 
 class Update : public QObject
 {
+    Q_OBJECT
 public:
-    Update(Type type);
+    Update(UpdateType type, Config *configuration);
     ~Update();
 
-    enum UpState {
-        IDLE,
-        CONNECT,
-        CHECK,
-        DOWNLOAD,
-        BACKUP,
-        PREINSTALL,
-        INSTALL
-    };
-
-    enum Type {
-        LAUNCHER_CHECK,
-        LAUNCHER,
-        CLIENT_CHECK,
-        CLIENT,
-        NONE
-    };
-
-    UpState updateStatus;
-    Type upType;
+    UpdateState updateStatus;
+    UpdateType upType;
 
     Version *version;
 
     QString getFileName(const QUrl &url);
-    void addToQueue(const UpFile *file);
+    void addToQueue(const UpFile file);
 
     void checkLauncherUpdate();
     void doLauncherUpdate();
@@ -60,12 +43,7 @@ private:
     Config *parser;
     Config *configuration;
 
-    struct UpFile {
-        QUrl &url;
-        short type; // 0 - xml data, 1 - files to update
-        QString dir;
-        QVariant hash;
-    };
+    QDir directory;
 
 private slots:
     void replyFinished();

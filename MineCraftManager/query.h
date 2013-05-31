@@ -8,7 +8,8 @@
 class Query : public QUdpSocket
 {
 public:
-    Query(QHostAddress ip, int port, int timeout = 3);
+    Query(QString address, int port);
+    ~Query();
 
     void isOnline();
     void getPlayers();
@@ -16,10 +17,13 @@ public:
     void getInfo();
 
 private:
-    int STATISTIC = 0x00;
-    int HANDSHAKE = 0x09;
-
     QUdpSocket *socket;
+
+    static const char HANDSHAKE;
+    static const char STAT;
+
+    QHostAddress addr;
+    int port;
 };
 
 #endif // QUERY_H

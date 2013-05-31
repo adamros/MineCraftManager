@@ -32,9 +32,16 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>MineCraft Manager</string>
+   <string>Lixium MC Manager</string>
   </property>
   <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: url(:/main/resources/bgmain.png) center right;
+color: rgb(255,255,255);</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -47,6 +54,9 @@
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(0,0,0,150);</string>
+    </property>
     <property name="title">
      <string>Logowanie i konfiguracja</string>
     </property>
@@ -58,6 +68,9 @@
        <width>51</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
      </property>
      <property name="text">
       <string>Nick:</string>
@@ -72,6 +85,9 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
      <property name="text">
       <string>Hasło:</string>
      </property>
@@ -85,6 +101,10 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: none;
+color: rgb(0,0,0);</string>
+     </property>
     </widget>
     <widget class="QLineEdit" name="passwordField">
      <property name="geometry">
@@ -95,6 +115,10 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: none;
+color: rgb(0,0,0);</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="loginButton">
      <property name="geometry">
@@ -104,6 +128,10 @@
        <width>91</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0);
+background: none;</string>
      </property>
      <property name="text">
       <string>Zaloguj</string>
@@ -118,6 +146,10 @@
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0);
+background: none;</string>
+     </property>
      <property name="text">
       <string>Tryb offline</string>
      </property>
@@ -130,6 +162,9 @@
        <width>131</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
      </property>
      <property name="text">
       <string>Zapamiętaj moje dane</string>
@@ -144,6 +179,10 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0);
+background: none;</string>
+     </property>
      <property name="text">
       <string>Konfiguracja</string>
      </property>
@@ -152,9 +191,9 @@
    <widget class="QWebView" name="mainWebView">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>580</x>
       <y>10</y>
-      <width>671</width>
+      <width>411</width>
       <height>431</height>
      </rect>
     </property>
@@ -176,6 +215,9 @@
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(0,0,0,150);</string>
+    </property>
     <property name="title">
      <string>Aktualizacje</string>
     </property>
@@ -187,6 +229,9 @@
        <width>141</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zainstalowana wersja klienta:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -201,8 +246,11 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>-</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -213,6 +261,9 @@
        <width>141</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
      </property>
      <property name="text">
       <string>Najnowsza wersja klienta:</string>
@@ -227,8 +278,11 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>-</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -240,21 +294,11 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
      <property name="text">
       <string>Status:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="updatestatus">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>60</y>
-       <width>351</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
      </property>
     </widget>
     <widget class="QProgressBar" name="updateProgressBar">
@@ -266,8 +310,11 @@
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
      <property name="value">
-      <number>24</number>
+      <number>0</number>
      </property>
     </widget>
     <widget class="QPushButton" name="updateClientButton">
@@ -278,6 +325,10 @@
        <width>191</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0);
+background: none;</string>
      </property>
      <property name="text">
       <string>Zaktualizuj</string>
@@ -292,8 +343,31 @@
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0);
+background: none;</string>
+     </property>
      <property name="text">
       <string>Sprawdź aktualizacje</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="updateStatus">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>60</y>
+       <width>351</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent</string>
+     </property>
+     <property name="text">
+      <string>Bezczynny</string>
      </property>
     </widget>
    </widget>
@@ -308,6 +382,10 @@
       <width>211</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0,0,0);
+background: none;</string>
     </property>
     <item>
      <property name="text">
@@ -324,11 +402,18 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255,255,255);
+background: transparent;</string>
+    </property>
     <property name="text">
      <string>Wybierz serwer:</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -337,9 +422,114 @@
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(0,0,0,150);</string>
+    </property>
     <property name="title">
      <string>Status i informacje serwera</string>
     </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Status serwera:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusInfo">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>20</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffaa00;&quot;&gt;Not implemented&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>47</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>MOTD:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="motd">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>161</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Not implemented</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerNum">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent</string>
+     </property>
+     <property name="text">
+      <string>Ilość graczy:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent;</string>
+     </property>
+     <property name="text">
+      <string>Not implemented</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

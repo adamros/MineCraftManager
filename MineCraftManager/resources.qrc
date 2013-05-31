@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/splash">
+        <file>resources/logolixium.png</file>
+    </qresource>
+    <qresource prefix="/main">
+        <file>resources/bgmain.png</file>
+    </qresource>
+    <qresource prefix="/config"/>
+</RCC>
