@@ -64,7 +64,7 @@ color: rgb(255,255,255);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>20</y>
        <width>51</width>
        <height>21</height>
       </rect>
@@ -80,7 +80,7 @@ color: rgb(255,255,255);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
+       <y>50</y>
        <width>51</width>
        <height>21</height>
       </rect>
@@ -96,7 +96,7 @@ color: rgb(255,255,255);</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>30</y>
+       <y>20</y>
        <width>191</width>
        <height>20</height>
       </rect>
@@ -110,7 +110,7 @@ color: rgb(0,0,0);</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>60</y>
+       <y>50</y>
        <width>191</width>
        <height>20</height>
       </rect>
@@ -124,7 +124,7 @@ color: rgb(0,0,0);</string>
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>30</y>
+       <y>20</y>
        <width>91</width>
        <height>23</height>
       </rect>
@@ -141,7 +141,7 @@ background: none;</string>
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>60</y>
+       <y>50</y>
        <width>91</width>
        <height>23</height>
       </rect>
@@ -154,29 +154,13 @@ background: none;</string>
       <string>Tryb offline</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="rememberCheck">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>90</y>
-       <width>131</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background: transparent;</string>
-     </property>
-     <property name="text">
-      <string>Zapamiętaj moje dane</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="configButton">
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>100</y>
+       <y>80</y>
        <width>91</width>
-       <height>31</height>
+       <height>23</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -185,6 +169,42 @@ background: none;</string>
      </property>
      <property name="text">
       <string>Konfiguracja</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="aboutLauncher">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>91</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0,0,0); background: none;</string>
+     </property>
+     <property name="text">
+      <string>O programie</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="loginMessages">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>341</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;
+color: rgb(255,255,255);</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
@@ -378,7 +398,7 @@ background: none;</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>20</y>
+      <y>10</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -397,7 +417,7 @@ background: none;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>10</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -514,7 +534,7 @@ background: transparent;</string>
       <string>Ilość graczy:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="players">
      <property name="geometry">
       <rect>
        <x>100</x>

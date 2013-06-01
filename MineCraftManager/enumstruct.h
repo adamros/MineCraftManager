@@ -26,6 +26,14 @@ enum UpdateState {
     INSTALL
 };
 
+enum XMLSection {
+    GENERAL,
+    JVM,
+    LOCALFILES,
+    MAIN,
+    FILES
+};
+
 struct UpFile {
     QUrl url;
     short type; // 0 - xml data, 1 - files to update

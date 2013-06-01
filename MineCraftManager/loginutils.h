@@ -6,19 +6,26 @@
 
 class Loginutils : public QObject
 {
+    Q_OBJECT
 public:
     Loginutils();
+    ~Loginutils();
 
     void doLogin(QString username, QString password);
-    void playCached(QString username, bool demo);
+    void playCached(QString username);
 
-    short getErrorCode();
     QString getSID();
+    QString getUsername();
+
+signals:
+    void sendResult(int i);
+    void sendMessage(QString type, QString message);
 
 private:
+    QNetworkAccessManager *nam;
+
     short errCode;
 
-    bool demo;
     QString latestVer;
     QString downloadTicket;
     QString username;

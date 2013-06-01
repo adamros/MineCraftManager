@@ -6,18 +6,24 @@ SplashScreen::SplashScreen(QWidget *parent) :
     ui(new Ui::SplashScreen)
 {
     ui->setupUi(this);
-    ui->label->setText("Inicjalizacja...");
+
+    ui->statusLabel->setText("Inicjalizacja...");
+    ui->progressBar->setValue(0);
+
+    this->setWindowFlags(Qt::SplashScreen);
 }
 
-void SplashScreen::setMessage(QString message)
+void SplashScreen::changeSplash(int progress, QString message)
 {
-    ui->label->setText(message);
+    ui->progressBar->setValue(progress);
+    ui->progressBar->update();
+    ui->statusLabel->setText(trUtf8(message.toAscii()));
 }
 
-void SplashScreen::progressChanged(int progress)
+void SplashScreen::finish(QMainWindow *mainWindow)
 {
-    this->progress = (this->progress + progress)/2;
-    ui->progressBar->setValue(this->progress);
+    mainWindow->show();
+    this->close();
 }
 
 SplashScreen::~SplashScreen()

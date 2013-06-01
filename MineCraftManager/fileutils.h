@@ -12,7 +12,8 @@ class FileUtils : public QObject
 public:
     explicit FileUtils(QObject *parent = 0);
 
-    void scanDir(QString dirName = "");
+    void scanAndCalcHash(QString dirName = "");
+    static void initDirectories();
     
 signals:
     

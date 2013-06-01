@@ -6,7 +6,7 @@ Loginutils::Loginutils()
 
 void Loginutils::doLogin(QString username, QString password)
 {
-    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
+    nam = new QNetworkAccessManager(this);
     QNetworkRequest req(QUrl("http://login.minecraft.net/"));
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     QString data = QString("user=%1&password=%2&version=13").arg(username).arg(password);
@@ -16,17 +16,14 @@ void Loginutils::doLogin(QString username, QString password)
     connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
     nam->post(req, postData);
-
-    delete nam;
 }
 
-void Loginutils::playCached(QString username, bool demo)
+void Loginutils::playCached(QString username)
 {
     if (username.isEmpty() || username.isNull() || username.length() <= 0)
         username = "Player";
 
     this->username = username;
-    this->demo = demo;
     this->sessionId = "1";
 }
 
@@ -57,17 +54,24 @@ void Loginutils::replyFinished(QNetworkReply *reply)
             username = list[2];
             sessionId = list[3];
         }
+
+        emit sendResult(errCode);
     }
     else
-        qDebug() << reply->errorString();
-}
-
-short Loginutils::getErrorCode()
-{
-    return this->errCode;
+        emit sendMessage("error", "Błąd logowania: " + reply->errorString());
 }
 
 QString Loginutils::getSID()
 {
     return this->sessionId;
+}
+
+QString Loginutils::getUsername()
+{
+    return this->username;
+}
+
+Loginutils::~Loginutils()
+{
+    delete this->nam;
 }

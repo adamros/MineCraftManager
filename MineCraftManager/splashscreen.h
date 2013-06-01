@@ -2,6 +2,7 @@
 #define SPLASHSCREEN_H
 
 #include <QDialog>
+#include <QMainWindow>
 
 namespace Ui {
 class SplashScreen;
@@ -15,14 +16,11 @@ public:
     explicit SplashScreen(QWidget *parent = 0);
     ~SplashScreen();
 
-public slots:
-    void setMessage(QString message);
-    void progressChanged(int progress);
+    void changeSplash(int progress, QString message);
+    void finish(QMainWindow *mainWindow);
     
 private:
     Ui::SplashScreen *ui;
-
-    int progress;
 };
 
 #endif // SPLASHSCREEN_H

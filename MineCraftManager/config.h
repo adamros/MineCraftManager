@@ -13,26 +13,27 @@ public:
     Config();
     Config(ConfigType type);
 
-    ConfigType confType;
-
     // Program config
     QMap< QString, QMap<QString, QString> > general;
     QMap< QString, QMap<QString, QString> > jvm;
-    QMultiMap< QString, QMap<QString, QString> > localFiles;
+    QMap< QString, QMap<QString, QString> > localFiles;
 
     // Update file
     QMap< QString, QMap<QString, QString> > main;
-    QMultiMap< QString, QMap<QString, QString> > files;
+    QMap< QString, QMap<QString, QString> > files;
 
     void parseFile(QString filename);
-
     void writeFile(QString filename);
+
+    QString readMapElement(XMLSection section, QString key, QString attribute);
+    void writeMapElement(XMLSection section, QString key, QString attribute, QString value);
 
 signals:
     void sendMessage(QString type, QString message);
 
 private:
     QString currentNode;
+    ConfigType confType;
 
     void parseElement(QXmlStreamReader *xml);
 };

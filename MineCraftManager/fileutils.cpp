@@ -6,7 +6,7 @@ FileUtils::FileUtils(QObject *parent) :
     hashThread = new HashCalc();
 }
 
-void FileUtils::scanDir(QString dirName)
+void FileUtils::scanAndCalcHash(QString dirName)
 {
     QDir dir(dirName);
     QFileInfoList list = dir.entryInfoList();
@@ -20,15 +20,23 @@ void FileUtils::scanDir(QString dirName)
         {
             if (info.fileName()!=".." && info.fileName()!=".")
             {
-                this->scanDir(sFilePath);
+                this->scanAndCalcHash(sFilePath);
             }
         }
         else
         {
             hashThread->addFile(info);
-            //qDebug() << "Path: " << info.filePath() << " Name: " << info.fileName() << endl;
         }
     }
 
     hashThread->start();
+}
+
+void FileUtils::initDirectories()
+{
+    QDir dir;
+    dir.mkpath("config/");
+    dir.mkpath("client/");
+    dir.mkpath("tmp/client/");
+    dir.mkpath("tmp/launcher");
 }
