@@ -17,73 +17,69 @@ void Config::parseFile(QString filename)
     if (!file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         emit sendMessage("error", file->errorString());
-        qDebug() << "Cant load xml file";
         return;
     }
 
-    QXmlStreamReader *xmlReader = new QXmlStreamReader(file->readAll());
-    file->close();
+    xmlReader.setDevice(file);
 
-    while (!xmlReader->atEnd() && !xmlReader->hasError())
+    while (!xmlReader.atEnd())
     {
-        QXmlStreamReader::TokenType token = xmlReader->readNext();
+        if (xmlReader.hasError())
+            qDebug() << xmlReader.errorString();
 
-        if (token == QXmlStreamReader::StartDocument)
-            continue;
-
-        if (token == QXmlStreamReader::StartElement)
+        if (xmlReader.readNextStartElement())
         {
-            if (xmlReader->name() == "general" || xmlReader->name() == "jvm" || xmlReader->name() == "main" || xmlReader->name() == "files")
+            if (xmlReader.name() == "general" || xmlReader.name() == "jvm" || xmlReader.name() == "main" || xmlReader.name() == "files")
             {
-                this->currentNode = xmlReader->name().toString();
-                this->parseElement(xmlReader);
+                this->currentNode = xmlReader.name().toString();
+                parseElement(xmlReader);
             }
+            else continue;
         }
+        else continue;
     }
 
-    xmlReader->clear();
-    delete xmlReader;
+    xmlReader.clear();
+    file->close();
     delete file;
 }
 
-void Config::parseElement(QXmlStreamReader *xml)
+void Config::parseElement(QXmlStreamReader &xml)
 {
-    xml->readNext();
-    while (!(xml->isEndElement() && xml->name() == currentNode))
+    while (!(xml.name() == this->currentNode && xml.isEndElement()))
     {
-        if (xml->isStartElement())
+        if (xml.readNextStartElement())
         {
-            QMap<QString, QString> tempAttr;
-            QXmlStreamAttributes attributes = xml->attributes();
+            if (xml.isStartElement())
+            {
+                QMap<QString, QString> tempAttr;
+                QXmlStreamAttributes attributes = xml.attributes();
 
-            foreach (QXmlStreamAttribute attribute, attributes) {
-                tempAttr.insert(attribute.name().toString(), attribute.value().toString());
-            }
+                QString txtElement = xml.readElementText();
+                tempAttr.insert("text", txtElement);
 
-            QString txtElement = xml->readElementText();
-            tempAttr.insert("text", txtElement);
+                foreach (QXmlStreamAttribute attribute, attributes) {
+                    tempAttr.insert(attribute.name().toString(), attribute.value().toString());
+                }
 
-            if (this->currentNode == "general")
-            {
-                this->general.insert(xml->name().toString(), tempAttr);
+                if (this->currentNode == "general")
+                    this->general.insert(xml.name().toString(), tempAttr);
+                else if (this->currentNode == "jvm")
+                    this->jvm.insert(xml.name().toString(), tempAttr);
+                else if (this->currentNode == "main")
+                    this->main.insert(xml.name().toString(), tempAttr);
+                else if (this->currentNode == "files")
+                {
+                    if (confType == CONFIG)
+                        this->localFiles.insert(xml.name().toString(), tempAttr);
+                    if (confType == UPDATE)
+                        this->files.insert(xml.name().toString(), tempAttr);
+                }
+                else continue;
             }
-            else if (this->currentNode == "jvm")
-            {
-                this->jvm.insert(xml->name().toString(), tempAttr);
-            }
-            else if (this->currentNode == "main")
-            {
-                this->main.insert(xml->name().toString(), tempAttr);
-            }
-            else if (this->currentNode == "files")
-            {
-                this->files.insert(xml->name().toString(), tempAttr);
-            }
-            else {
-                continue;
-            }
+            else continue;
         }
-        else xml->readNext();
+        else continue;
     }
 }
 
@@ -101,6 +97,7 @@ void Config::writeFile(QString filename)
     xmlWriter->setDevice(file);
     xmlWriter->setAutoFormatting(true);
     xmlWriter->writeStartDocument();
+    xmlWriter->writeStartElement("configuration");
 
     if (this->confType == CONFIG)
     {
@@ -145,18 +142,18 @@ void Config::writeFile(QString filename)
         xmlWriter->writeEndElement();
 
         // Localfiles section
-        xmlWriter->writeStartElement("localfiles");
+        xmlWriter->writeStartElement("files");
 
-        foreach (QString key, files.keys())
+        foreach (QString key, localFiles.keys())
         {
             xmlWriter->writeStartElement(key);
 
-            foreach (QString argkey, files.value(key).keys())
+            foreach (QString argkey, localFiles.value(key).keys())
             {
                 if (argkey == "text")
-                    xmlWriter->writeCharacters(files.value(key).value("text"));
+                    xmlWriter->writeCharacters(localFiles.value(key).value("text"));
                 else
-                    xmlWriter->writeAttribute(argkey, files.value(key).value(argkey));
+                    xmlWriter->writeAttribute(argkey, localFiles.value(key).value(argkey));
             }
 
             xmlWriter->writeEndElement();
@@ -189,16 +186,16 @@ void Config::writeFile(QString filename)
         // Files section
         xmlWriter->writeStartElement("files");
 
-        foreach (QString key, files.keys())
+        foreach (QString key, localFiles.keys())
         {
             xmlWriter->writeStartElement(key);
 
-            foreach (QString argkey, files.value(key).keys())
+            foreach (QString argkey, localFiles.value(key).keys())
             {
                 if (argkey == "text")
-                    xmlWriter->writeCharacters(files.value(key).value("text"));
+                    xmlWriter->writeCharacters(localFiles.value(key).value("text"));
                 else
-                    xmlWriter->writeAttribute(argkey, files.value(key).value(argkey));
+                    xmlWriter->writeAttribute(argkey, localFiles.value(key).value(argkey));
             }
 
             xmlWriter->writeEndElement();
@@ -207,6 +204,7 @@ void Config::writeFile(QString filename)
         xmlWriter->writeEndElement();
     }
 
+    xmlWriter->writeEndElement();
     xmlWriter->writeEndDocument();
     file->close();
 
@@ -347,4 +345,13 @@ void Config::writeMapElement(XMLSection section, QString key, QString attribute,
     }
     else
         emit sendMessage("error", "Próba odczytu nieistniejącej sekcji!");
+}
+
+bool Config::toBool(QString value)
+{
+    QString clean = value.trimmed().simplified();
+
+    if (clean == "true" || clean == "1")
+        return true;
+    else return false;
 }

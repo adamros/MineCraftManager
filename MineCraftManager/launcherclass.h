@@ -2,21 +2,22 @@
 #define LAUNCHERCLASS_H
 
 #include <QtCore>
+#include <stdlib.h>
 
-class LauncherClass
+class LauncherClass : public QObject
 {
+    Q_OBJECT
 public:
-    LauncherClass();
+    LauncherClass(QString workingDir, QString username, QString sessionId, QString javaPath = "");
+    ~LauncherClass();
 
     void addParam(QString param);
-    void setJVMPath(QString path);
-    void setWorkingDir(QString dir);
-    void setUsername(QString nick);
-    void setSessionID(QString sid);
+    void addClasspathLibrary(QString library);
 
     bool launchGame();
 private:
     QStringList params;
+    QStringList classpath;
     QProcess *jvmProcess;
 
     QString username;

@@ -28,6 +28,8 @@ public:
     QString readMapElement(XMLSection section, QString key, QString attribute);
     void writeMapElement(XMLSection section, QString key, QString attribute, QString value);
 
+    static bool toBool(QString value);
+
 signals:
     void sendMessage(QString type, QString message);
 
@@ -35,7 +37,9 @@ private:
     QString currentNode;
     ConfigType confType;
 
-    void parseElement(QXmlStreamReader *xml);
+    QXmlStreamReader xmlReader;
+
+    void parseElement(QXmlStreamReader &xml);
 };
 
 #endif // CONFIG_H

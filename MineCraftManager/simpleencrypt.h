@@ -9,8 +9,7 @@ class SimpleEncrypt : public QObject
 public:
     explicit SimpleEncrypt(QObject *parent = 0);
     
-    static QByteArray encrypt(QString data);
-    static QString decrypt(QByteArray data);
+    static QByteArray calculateXor(const QByteArray &data, const QByteArray &key);
     
 };
 

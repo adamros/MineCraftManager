@@ -1,27 +1,31 @@
 #include "launcherclass.h"
 
-LauncherClass::LauncherClass()
+LauncherClass::LauncherClass(QString workingDir, QString username, QString sessionId, QString javaPath)
 {
-    this->jvmPath = "";
+    this->jvmPath = javaPath;
     this->jvmProcess = new QProcess();
-    this->username = "";
-    this->session = "";
+    this->username = username;
+    this->session = sessionId;
+    this->workingDir = workingDir;
 }
 
 bool LauncherClass::launchGame()
 {
-    this->jvmProcess->setWorkingDirectory(this->workingDir.path());
-
     QString javaConstruct = "";
 
     if (!jvmPath.trimmed().isEmpty() || jvmPath.trimmed() != "")
-        javaConstruct += this->jvmPath + " ";
+        javaConstruct += QDir::toNativeSeparators("\"" + this->jvmPath + "\"/" + "javaw");
+    else javaConstruct += "javaw";
 
-    javaConstruct += "java";
+    addClasspathLibrary("bin/minecraft.jar");
+    addClasspathLibrary("bin/lwjgl.jar");
+    addClasspathLibrary("bin/lwjgl_util.jar");
+    addClasspathLibrary("bin/jinput.jar");
 
-    addParam("-cp \"bin/minecraft.jar:bin/jinput.jar:bin/lwjgl.jar:bin/lwjgl_util.jar\"");
-    addParam("-Dorg.lwjgl.librarypath=\"bin/natives\"");
-    addParam("-Dnet.java.games.input.librarypath=\"bin/natives\"");
+    addParam("-cp \"" + this->classpath.join(";") + "\"");
+    addParam("-Dorg.lwjgl.librarypath=\"" + QDir::toNativeSeparators(this->workingDir.absoluteFilePath(".minecraft/bin/natives")) + "\"");
+    addParam("-Dnet.java.games.input.librarypath=\"" + QDir::toNativeSeparators(this->workingDir.absoluteFilePath(".minecraft/bin/natives")) + "\"");
+    addParam("-Duser.home=\"" + QDir::toNativeSeparators(this->workingDir.absolutePath()) + "\"");
     addParam("net.minecraft.client.Minecraft");
 
     if (this->username.trimmed().isEmpty() || this->username.trimmed() == "" || this->session.trimmed().isEmpty() || this->session.trimmed() == "")
@@ -30,7 +34,23 @@ bool LauncherClass::launchGame()
     addParam(this->username);
     addParam(this->session);
 
-    return this->jvmProcess->startDetached(javaConstruct, this->params);
+#if defined(Q_WS_WIN) || defined(Q_WS_WIN32)
+    qputenv("APPDATA", QDir::toNativeSeparators(this->workingDir.absolutePath()).trimmed().toAscii());
+#endif
+
+    QString oldWDir = QDir::current().absolutePath();
+    QDir::setCurrent(QDir::toNativeSeparators(this->workingDir.path()));
+
+    qDebug() << javaConstruct;
+
+    foreach(QString parameter, this->params)
+        javaConstruct += " " + parameter;
+
+    bool started = this->jvmProcess->startDetached(javaConstruct);
+
+    QDir::setCurrent(QDir::toNativeSeparators(oldWDir));
+
+    return started;
 }
 
 void LauncherClass::addParam(QString param)
@@ -38,22 +58,13 @@ void LauncherClass::addParam(QString param)
     this->params.push_back(param);
 }
 
-void LauncherClass::setJVMPath(QString path)
+void LauncherClass::addClasspathLibrary(QString library)
 {
-    this->jvmPath = path;
+    QDir file(QDir::toNativeSeparators(this->workingDir.absolutePath()));
+    this->classpath.push_back(QDir::toNativeSeparators(file.absoluteFilePath(".minecraft/" + library)));
 }
 
-void LauncherClass::setWorkingDir(QString dir)
+LauncherClass::~LauncherClass()
 {
-    this->workingDir = QDir::toNativeSeparators(dir);
-}
-
-void LauncherClass::setUsername(QString nick)
-{
-    this->username = nick;
-}
-
-void LauncherClass::setSessionID(QString sid)
-{
-    this->session = sid;
+    delete this->jvmProcess;
 }

@@ -8,7 +8,7 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
     ui->setupUi(this);
 
     this->aboutLauncherDialog = new AboutDialog(this);
-    this->configDialog = new ConfigDialog(this->config, this);
+    this->configDialog = new ConfigDialog(configuration, this);
 
     this->config = configuration;
     this->loginClass = new Loginutils();
@@ -19,7 +19,7 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
     connect(this->loginClass, SIGNAL(sendResult(int)), this, SLOT(getLoginResult(int)));
 
     ui->usernameField->setText(this->config->readMapElement(GENERAL, "lastUser", "text"));
-    ui->passwordField->setText(this->config->readMapElement(GENERAL, "encPassword", "text"));
+    ui->passwordField->setText(SimpleEncrypt::calculateXor(QByteArray::fromHex(this->config->readMapElement(GENERAL, "encPassword", "text").toAscii()), QByteArray(QString("testkey").toAscii()).toHex()));
     ui->loginMessages->setText("");
 
     connect(ui->aboutLauncher, SIGNAL(clicked()), this->aboutLauncherDialog, SLOT(show()));
@@ -41,6 +41,8 @@ void MCManager::receiveMessage(QString type, QString message)
 void MCManager::doLogin()
 {
     this->loginClass->doLogin(ui->usernameField->text(), ui->passwordField->text());
+    ui->loginButton->setEnabled(false);
+    ui->offlineButton->setEnabled(false);
 }
 
 void MCManager::getLoginResult(int i)
@@ -49,8 +51,11 @@ void MCManager::getLoginResult(int i)
     {
     case 0:
         setLoginMessage(Qt::white, "Zalogowano poprawnie!");
+        ui->loginButton->setEnabled(true);
+        ui->offlineButton->setEnabled(true);
         this->username = this->loginClass->getUsername();
         this->sid = this->loginClass->getSID();
+        launchGame();
         break;
     case 1:
         setLoginMessage(Qt::red, "Niepoprawna nazwa użytkownika lub hasło!");
@@ -73,6 +78,7 @@ void MCManager::playOffline()
     this->loginClass->playCached(ui->usernameField->text());
     this->username = this->loginClass->getUsername();
     this->sid = this->loginClass->getSID();
+    launchGame();
 }
 
 void MCManager::setLoginMessage(QColor color, QString message)
@@ -81,7 +87,28 @@ void MCManager::setLoginMessage(QColor color, QString message)
     ui->loginMessages->setText(trUtf8(message.toAscii()));
 }
 
+bool MCManager::launchGame()
+{
+    LauncherClass launchClass("client/", ui->usernameField->text(), this->sid, this->config->readMapElement(JVM, "javaPath", "text"));
+    launchClass.addParam("-Xms590M");
+    launchClass.addParam("-Xmx1G");
+    launchClass.addParam("-d64");
+
+    return launchClass.launchGame();
+}
+
+void MCManager::closeEvent(QCloseEvent *event)
+{
+    this->config->writeMapElement(GENERAL, "lastUser", "text", ui->usernameField->text());
+    this->config->writeMapElement(GENERAL, "encPassword", "text", SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("testkey").toAscii())).toHex());
+    this->config->writeFile("config/config.xml");
+}
+
 MCManager::~MCManager()
 {
     delete ui;
+    delete aboutLauncherDialog;
+    delete configDialog;
+    delete config;
+    delete loginClass;
 }

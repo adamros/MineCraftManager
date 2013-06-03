@@ -6,7 +6,7 @@ FileUtils::FileUtils(QObject *parent) :
     hashThread = new HashCalc();
 }
 
-void FileUtils::scanAndCalcHash(QString dirName)
+HashCalc* FileUtils::scanAndCalcHash(QString dirName)
 {
     QDir dir(dirName);
     QFileInfoList list = dir.entryInfoList();
@@ -30,6 +30,8 @@ void FileUtils::scanAndCalcHash(QString dirName)
     }
 
     hashThread->start();
+
+    return this->hashThread;
 }
 
 void FileUtils::initDirectories()

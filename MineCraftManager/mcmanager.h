@@ -10,6 +10,7 @@
 #include "aboutdialog.h"
 #include "configdialog.h"
 #include "simpleencrypt.h"
+#include "launcherclass.h"
 
 namespace Ui {
 class MCManager;
@@ -22,6 +23,9 @@ class MCManager : public QMainWindow
 public:
     explicit MCManager(Config *configuration, QWidget *parent = 0);
     ~MCManager();
+
+protected:
+    void closeEvent(QCloseEvent *event);
     
 private:
     Ui::MCManager *ui;
@@ -43,6 +47,7 @@ private slots:
     void doLogin();
     void playOffline();
     void setLoginMessage(QColor color, QString message);
+    bool launchGame();
 
 signals:
 };

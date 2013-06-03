@@ -5,16 +5,17 @@ SimpleEncrypt::SimpleEncrypt(QObject *parent) :
 {
 }
 
-QByteArray SimpleEncrypt::encrypt(QString data)
+QByteArray SimpleEncrypt::calculateXor(const QByteArray &data, const QByteArray &key)
 {
-    QByteArray ba(data.toUtf8());
-    QByteArray comprData = qCompress(ba, 4);
-    return comprData.toHex();
-}
+    if(key.isEmpty())
+        return data;
 
-QString SimpleEncrypt::decrypt(QByteArray data)
-{
-    QByteArray ba(QByteArray::fromHex(data));
-    QByteArray uncomprData = qUncompress(ba);
-    return QString::fromUtf8(uncomprData);
+    QByteArray result;
+    for(int i = 0 , j = 0; i < data.length(); ++i , ++j)
+    {
+        if(j == key.length())
+            j = 0;
+        result.append(data.at(i) ^ key.at(j));
+    }
+    return result;
 }

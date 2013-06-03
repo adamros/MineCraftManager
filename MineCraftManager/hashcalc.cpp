@@ -17,7 +17,7 @@ void HashCalc::run()
     while (!fileQueue.empty())
     {
         QFileInfo finfo = fileQueue.dequeue();
-        QFile tmpFile(finfo.absoluteFilePath());
+        QFile tmpFile(finfo.filePath());
 
         QString hash = QString(QCryptographicHash::hash(tmpFile.readAll(), QCryptographicHash::Md5).toHex());
 

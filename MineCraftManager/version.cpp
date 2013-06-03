@@ -17,7 +17,7 @@ bool Version::isNewer(const QString &str)
 {
     QStringList list = str.split(".");
 
-    int strlist[3];
+    int strlist[4];
 
     for (int i=0;i<list.count();i++)
     {
@@ -61,8 +61,8 @@ bool Version::compare(QString ver1, QString ver2)
     QStringList strlist1 = ver1.split(".");
     QStringList strlist2 = ver2.split(".");
 
-    int numlist1[3];
-    int numlist2[3];
+    int numlist1[4];
+    int numlist2[4];
 
     for (int i=0;i<strlist1.count();i++)
     {

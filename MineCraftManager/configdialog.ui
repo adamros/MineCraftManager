@@ -48,8 +48,14 @@ color: rgb(0,0,0);</string>
      <height>441</height>
     </rect>
    </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideNone</enum>
    </property>
    <widget class="QWidget" name="tab_general">
     <attribute name="title">
@@ -192,7 +198,7 @@ color: rgb(0,0,0);</string>
        <string>Częstotliwość odświeżania statusu:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="queryRefresh">
       <property name="geometry">
        <rect>
         <x>40</x>
