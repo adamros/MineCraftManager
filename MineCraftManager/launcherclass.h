@@ -25,6 +25,8 @@ private:
 
     QString jvmPath;
     QDir workingDir;
+
+    bool is64Windows();
 };
 
 #endif // LAUNCHERCLASS_H

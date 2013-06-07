@@ -7,6 +7,11 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->messagebox = new QMessageBox(this);
+    messagebox->setAutoFillBackground(true);
+
+    this->setStyleSheet(this->styleSheet() + " QMessageBox, QPushButton { background: none; }");
+
     this->aboutLauncherDialog = new AboutDialog(this);
     this->configDialog = new ConfigDialog(configuration, this);
 
@@ -19,7 +24,7 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
     connect(this->loginClass, SIGNAL(sendResult(int)), this, SLOT(getLoginResult(int)));
 
     ui->usernameField->setText(this->config->readMapElement(GENERAL, "lastUser", "text"));
-    ui->passwordField->setText(SimpleEncrypt::calculateXor(QByteArray::fromHex(this->config->readMapElement(GENERAL, "encPassword", "text").toAscii()), QByteArray(QString("testkey").toAscii()).toHex()));
+    ui->passwordField->setText(SimpleEncrypt::calculateXor(QByteArray::fromHex(this->config->readMapElement(GENERAL, "encPassword", "text").toAscii()), QByteArray(QString("p").toAscii()).toHex()));
     ui->loginMessages->setText("");
 
     connect(ui->aboutLauncher, SIGNAL(clicked()), this->aboutLauncherDialog, SLOT(show()));
@@ -30,12 +35,13 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
 
 void MCManager::receiveMessage(QString type, QString message)
 {
+    messagebox->setAutoFillBackground(true);
     if (type == "error")
-        QMessageBox::critical(this, "Błąd", message);
+        messagebox->critical(this, trUtf8(QString("Błąd").toAscii()), trUtf8(message.toAscii()));
     else if (type == "warning")
-        QMessageBox::warning(this, "Ostrzeżenie", message);
+        messagebox->warning(this, trUtf8(QString("Warning").toAscii()), trUtf8(message.toAscii()));
     else
-        QMessageBox::information(this, "Informacja", message);
+        messagebox->information(this, trUtf8(QString("Info").toAscii()), trUtf8(message.toAscii()));
 }
 
 void MCManager::doLogin()
@@ -51,8 +57,6 @@ void MCManager::getLoginResult(int i)
     {
     case 0:
         setLoginMessage(Qt::white, "Zalogowano poprawnie!");
-        ui->loginButton->setEnabled(true);
-        ui->offlineButton->setEnabled(true);
         this->username = this->loginClass->getUsername();
         this->sid = this->loginClass->getSID();
         launchGame();
@@ -71,6 +75,9 @@ void MCManager::getLoginResult(int i)
         setLoginMessage(Qt::red, "Nie mozna połączyć się z minecraft.net");
         break;
     }
+
+    ui->loginButton->setEnabled(true);
+    ui->offlineButton->setEnabled(true);
 }
 
 void MCManager::playOffline()
@@ -99,9 +106,16 @@ bool MCManager::launchGame()
 
 void MCManager::closeEvent(QCloseEvent *event)
 {
+    Q_UNUSED(event);
+    qDebug() << SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("p").toAscii())).toHex();
     this->config->writeMapElement(GENERAL, "lastUser", "text", ui->usernameField->text());
-    this->config->writeMapElement(GENERAL, "encPassword", "text", SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("testkey").toAscii())).toHex());
+    this->config->writeMapElement(GENERAL, "encPassword", "text", SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("p").toAscii())).toHex());
     this->config->writeFile("config/config.xml");
+}
+
+void MCManager::saveSettings()
+{
+
 }
 
 MCManager::~MCManager()

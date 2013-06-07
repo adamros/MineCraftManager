@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
     splash.changeSplash(30, "Ładowanie");
 
     FileUtils::initDirectories();
+    FileUtils *fileTools = new FileUtils();
+    //fileTools->scanAndCalcHash("");
     splash.changeSplash(40, "Wczytywanie konfiguracji");
     config->parseFile("config/config.xml");
 

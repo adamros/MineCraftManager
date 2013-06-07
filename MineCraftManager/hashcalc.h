@@ -18,7 +18,6 @@ protected:
 
 signals:
     void progressChanged(int completed, int total);
-    void mapCompleted(QMap<QString, QString> &map);
 
 private:
     QQueue<QFileInfo> fileQueue;

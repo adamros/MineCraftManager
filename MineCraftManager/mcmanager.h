@@ -39,6 +39,8 @@ private:
     QString sid;
     QString username;
 
+    QMessageBox *messagebox;
+
 public slots:
     void receiveMessage(QString type, QString message);
     void getLoginResult(int i);
@@ -48,6 +50,7 @@ private slots:
     void playOffline();
     void setLoginMessage(QColor color, QString message);
     bool launchGame();
+    void saveSettings();
 
 signals:
 };

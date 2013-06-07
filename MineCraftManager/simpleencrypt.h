@@ -1,7 +1,7 @@
 #ifndef SIMPLEENCRYPT_H
 #define SIMPLEENCRYPT_H
 
-#include <QObject>
+#include <QtCore>
 
 class SimpleEncrypt : public QObject
 {

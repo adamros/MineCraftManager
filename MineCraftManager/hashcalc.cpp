@@ -18,16 +18,17 @@ void HashCalc::run()
     {
         QFileInfo finfo = fileQueue.dequeue();
         QFile tmpFile(finfo.filePath());
-
+        if (tmpFile.open(QIODevice::ReadOnly))
+        {
         QString hash = QString(QCryptographicHash::hash(tmpFile.readAll(), QCryptographicHash::Md5).toHex());
 
-        hashMap.insert(finfo.path(), hash);
+        hashMap.insert(finfo.filePath(), hash);
+        tmpFile.close();
         this->completedFiles++;
+        }
 
         emit progressChanged(this->completedFiles, this->totalfiles);
     }
-
-    emit mapCompleted(this->hashMap);
 }
 
 HashCalc::~HashCalc()

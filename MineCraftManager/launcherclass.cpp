@@ -9,12 +9,31 @@ LauncherClass::LauncherClass(QString workingDir, QString username, QString sessi
     this->workingDir = workingDir;
 }
 
+/* Detect 64-bit Windows system (Qt4 is 32-bit when compiled with MinGW) */
+bool LauncherClass::is64Windows()
+{
+#if defined (Q_WS_WIN)
+    QProcessEnvironment env(QProcessEnvironment::systemEnvironment());
+    QString nativeDir = QDir::toNativeSeparators(env.value("windir") + "/sysnative");
+    return QDir(nativeDir).exists();
+#else
+    return false;
+#endif
+}
+
 bool LauncherClass::launchGame()
 {
     QString javaConstruct = "";
 
     if (!jvmPath.trimmed().isEmpty() || jvmPath.trimmed() != "")
         javaConstruct += QDir::toNativeSeparators("\"" + this->jvmPath + "\"/" + "javaw");
+#if defined (Q_WS_WIN)
+    else if (is64Windows() && (jvmPath.trimmed().isEmpty() || jvmPath.trimmed() == ""))
+    {
+        QProcessEnvironment env(QProcessEnvironment::systemEnvironment());
+        javaConstruct += QDir::toNativeSeparators(env.value("windir") + "/sysnative/javaw.exe");
+    }
+#endif
     else javaConstruct += "javaw";
 
     addClasspathLibrary("bin/minecraft.jar");
