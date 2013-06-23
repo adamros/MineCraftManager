@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <general>
+        <encPassword>15011219190a0a</encPassword>
+        <lastUser>adamros</lastUser>
+        <loginMode>0</loginMode>
+        <queryEnabled>0</queryEnabled>
+        <queryInterval>20</queryInterval>
+        <storeLastUser>1</storeLastUser>
+        <storePassword>1</storePassword>
+    </general>
+    <jvm>
+        <additionalParams></additionalParams>
+        <d3dAcceleration>0</d3dAcceleration>
+        <ddrawEnabled>0</ddrawEnabled>
+        <force64bit>1</force64bit>
+        <hwOpenglAcceleration>1</hwOpenglAcceleration>
+        <javaPath>C:\Program Files\Java\jdk1.7.0_10\bin</javaPath>
+        <maxHeap>1024</maxHeap>
+        <minHeap>512</minHeap>
+        <xrenderAcceleration>0</xrenderAcceleration>
+    </jvm>
+    <files>
+        <file checksum="4ab7693d7534c99ff">new.txt</file>
+    </files>
+</configuration>
