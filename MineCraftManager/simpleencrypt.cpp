@@ -11,12 +11,9 @@ QByteArray SimpleEncrypt::calculateXor(const QByteArray &data, const QByteArray 
         return data;
 
     QByteArray result;
-    for(int i = 0 , j = 0; i < data.length(); ++i , ++j)
+    for(int i = 0; i < data.length(); ++i)
     {
-        qDebug() << i << " " << j;
-        if(j == key.length())
-            j = 0;
-        result.append(data.at(i) ^ key.at(j));
+        result.append(data.at(i) ^ key.at(0));
     }
     return result;
 }

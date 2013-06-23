@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     FileUtils::initDirectories();
     FileUtils *fileTools = new FileUtils();
-    //fileTools->scanAndCalcHash("");
+    HashCalc *scanner = fileTools->scanAndCalcHash("");
     splash.changeSplash(40, "Wczytywanie konfiguracji");
     config->parseFile("config/config.xml");
 
