@@ -2,6 +2,7 @@
 #define LAUNCHERCLASS_H
 
 #include <QtCore>
+#include "fileutils.h"
 #include <stdlib.h>
 
 class LauncherClass : public QObject
@@ -13,6 +14,7 @@ public:
 
     void addParam(QString param);
     void addClasspathLibrary(QString library);
+    void addAbsoluteClasspathLibrary(QString library);
 
     bool launchGame();
 private:
@@ -25,6 +27,8 @@ private:
 
     QString jvmPath;
     QDir workingDir;
+
+    FileUtils *fileTools;
 
     bool is64Windows();
 };

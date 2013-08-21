@@ -144,16 +144,17 @@ void Config::writeFile(QString filename)
         // Localfiles section
         xmlWriter->writeStartElement("files");
 
-        foreach (QString key, localFiles.keys())
+        QList<QMap<QString,QString> > values = localFiles.values("file");
+        for (int i=0; i < values.count(); ++i)
         {
-            xmlWriter->writeStartElement(key);
+            xmlWriter->writeStartElement("file");
 
-            foreach (QString argkey, localFiles.value(key).keys())
+            foreach (QString argkey, values.at(i).keys())
             {
                 if (argkey == "text")
-                    xmlWriter->writeCharacters(localFiles.value(key).value("text"));
+                    xmlWriter->writeCharacters(values.at(i).value("text"));
                 else
-                    xmlWriter->writeAttribute(argkey, localFiles.value(key).value(argkey));
+                    xmlWriter->writeAttribute(argkey, values.at(i).value(argkey));
             }
 
             xmlWriter->writeEndElement();
@@ -186,16 +187,17 @@ void Config::writeFile(QString filename)
         // Files section
         xmlWriter->writeStartElement("files");
 
-        foreach (QString key, localFiles.keys())
+        QList<QMap<QString,QString> > values = files.values("file");
+        for (int i=0; i < values.count(); ++i)
         {
-            xmlWriter->writeStartElement(key);
+            xmlWriter->writeStartElement("file");
 
-            foreach (QString argkey, localFiles.value(key).keys())
+            foreach (QString argkey, values.at(i).keys())
             {
                 if (argkey == "text")
-                    xmlWriter->writeCharacters(localFiles.value(key).value("text"));
+                    xmlWriter->writeCharacters(values.at(i).value("text"));
                 else
-                    xmlWriter->writeAttribute(argkey, localFiles.value(key).value(argkey));
+                    xmlWriter->writeAttribute(argkey, values.at(i).value(argkey));
             }
 
             xmlWriter->writeEndElement();

@@ -23,7 +23,7 @@ public:
     void addToQueue(const UpFile file);
 
     void checkLauncherUpdate();
-    void doLauncherUpdate();
+    void doLauncherUpdate(QString file);
     void checkClientUpdate();
     void doClientUpdate();
 
@@ -44,6 +44,8 @@ private:
     Config *configuration;
 
     QDir directory;
+
+    QMap<QString,QString> prepareUpdateList(Config *updateConfig);
 
 private slots:
     void replyFinished();

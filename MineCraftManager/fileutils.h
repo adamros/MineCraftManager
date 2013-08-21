@@ -5,23 +5,31 @@
 #include <QtCore>
 
 #include "hashcalc.h"
+#include "enumstruct.h"
+#include "config.h"
 
 class FileUtils : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileUtils(QObject *parent = 0);
+    explicit FileUtils(Config *config, QObject *parent = 0);
 
-    HashCalc* scanAndCalcHash(QString dirName = "");
+    void addFilesAndScan(QString dirName = "");
     static void initDirectories();
+    QStringList scanFolder(QString dirName);
     
-signals:
-    
-public slots:
+private slots:
+    void mapAssign();
     
 private:
     HashCalc *hashThread;
-    QMap<QString, QString> fileMap;
+    QMultiMap<QString, QMap<QString, QString> > fileMap;
+    Config *config;
+
+    QStringList files;
+
+    void scanAndCalcHash(QString dirName = "");
+    void scanDirectory(QString dirName);
 };
 
 #endif // FILEUTILS_H

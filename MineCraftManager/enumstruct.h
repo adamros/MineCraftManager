@@ -26,6 +26,13 @@ enum UpdateState {
     INSTALL
 };
 
+enum UpdateFlag {
+    FORCEUPDATE,
+    DELETE,
+    REINSTALL,
+    KEEP
+};
+
 enum XMLSection {
     GENERAL,
     JVM,

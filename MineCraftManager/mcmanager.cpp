@@ -96,10 +96,22 @@ void MCManager::setLoginMessage(QColor color, QString message)
 
 bool MCManager::launchGame()
 {
-    LauncherClass launchClass("client/", ui->usernameField->text(), this->sid, this->config->readMapElement(JVM, "javaPath", "text"));
-    launchClass.addParam("-Xms590M");
-    launchClass.addParam("-Xmx1G");
-    launchClass.addParam("-d64");
+    LauncherClass launchClass("C:\\Users\\Adam\\AppData\\Roaming", ui->usernameField->text(), this->sid, this->config->readMapElement(JVM, "javaPath", "text"));
+    launchClass.addParam("-Xms" + this->config->readMapElement(JVM, "minHeap", "text") + "M");
+    launchClass.addParam("-Xmx" + this->config->readMapElement(JVM, "maxHeap", "text") + "M");
+
+    if (Config::toBool(this->config->readMapElement(JVM, "force64bit", "text")))
+        launchClass.addParam("-d64");
+    if (Config::toBool(this->config->readMapElement(JVM, "hwOpenglAcceleration", "text")))
+        launchClass.addParam("-Dsun.java2d.opengl=true");
+    if (Config::toBool(this->config->readMapElement(JVM, "d3dAcceleration", "text")))
+        launchClass.addParam("-Dsun.java2d.d3d=true");
+    if (Config::toBool(this->config->readMapElement(JVM, "xrenderAcceleration", "text")))
+        launchClass.addParam("-Dsun.java2d.xrender=true");
+
+    QString params = this->config->readMapElement(JVM, "additionalParams", "text");
+    if (!params.isEmpty() || params.trimmed() != "")
+        launchClass.addParam(params);
 
     return launchClass.launchGame();
 }
@@ -107,9 +119,17 @@ bool MCManager::launchGame()
 void MCManager::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-    qDebug() << SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("p").toAscii())).toHex();
-    this->config->writeMapElement(GENERAL, "lastUser", "text", ui->usernameField->text());
-    this->config->writeMapElement(GENERAL, "encPassword", "text", SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("p").toAscii())).toHex());
+
+    if (Config::toBool(this->config->readMapElement(GENERAL, "storeLastUser", "text")))
+        this->config->writeMapElement(GENERAL, "lastUser", "text", ui->usernameField->text());
+    else
+        this->config->writeMapElement(GENERAL, "lastUser", "text", "");
+
+    if (Config::toBool(this->config->readMapElement(GENERAL, "storePassword", "text")))
+        this->config->writeMapElement(GENERAL, "encPassword", "text", SimpleEncrypt::calculateXor(ui->usernameField->text().toAscii(), QByteArray(QString("p").toAscii())).toHex());
+    else
+        this->config->writeMapElement(GENERAL, "encPassword", "text", "");
+
     this->config->writeFile("config/config.xml");
 }
 

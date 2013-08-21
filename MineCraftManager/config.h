@@ -16,11 +16,11 @@ public:
     // Program config
     QMap< QString, QMap<QString, QString> > general;
     QMap< QString, QMap<QString, QString> > jvm;
-    QMap< QString, QMap<QString, QString> > localFiles;
+    QMultiMap< QString, QMap<QString, QString> > localFiles;
 
     // Update file
     QMap< QString, QMap<QString, QString> > main;
-    QMap< QString, QMap<QString, QString> > files;
+    QMultiMap< QString, QMap<QString, QString> > files;
 
     void parseFile(QString filename);
     void writeFile(QString filename);
@@ -29,13 +29,13 @@ public:
     void writeMapElement(XMLSection section, QString key, QString attribute, QString value);
 
     static bool toBool(QString value);
+    ConfigType confType;
 
 signals:
     void sendMessage(QString type, QString message);
 
 private:
     QString currentNode;
-    ConfigType confType;
 
     QXmlStreamReader xmlReader;
 

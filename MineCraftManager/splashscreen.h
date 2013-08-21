@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMainWindow>
+#include <QtCore>
 
 namespace Ui {
 class SplashScreen;

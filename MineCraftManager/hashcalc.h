@@ -12,17 +12,18 @@ public:
     ~HashCalc();
 
     void addFile(QFileInfo &file);
+
+    QMultiMap<QString, QMap<QString, QString> > *hashMap;
     
 protected:
     void run();
 
 signals:
     void progressChanged(int completed, int total);
+    void mapCompleted();
 
 private:
     QQueue<QFileInfo> fileQueue;
-
-    QMap<QString, QString> hashMap;
 
     int totalfiles;
     int completedFiles;

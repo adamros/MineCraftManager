@@ -32,7 +32,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Lixium MC Manager</string>
+   <string>Lixium Launcher</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
