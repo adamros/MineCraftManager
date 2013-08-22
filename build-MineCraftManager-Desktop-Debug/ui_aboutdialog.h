@@ -1,8 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aboutdialog.ui'
 **
-** Created: Fri 7. Jun 10:28:21 2013
-**      by: Qt User Interface Compiler version 4.8.4
+** Created by: Qt User Interface Compiler version 4.8.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -56,7 +55,7 @@ public:
     {
         AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "Lixium MC Manager - o launcherze", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("AboutDialog", "Zamknij", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("AboutDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:9pt;\">Lixium MC Manager v1.0.0.96<br/>Autor: </span><span style=\" font-size:9pt; color:#000000;\">adamros<br/></span><span style=\" font-size:9pt;\">Grafika: </span><span style=\" font-size:9pt; color:#000000;\">ReQntar</span><span style=\" font-size:9pt;\">, </span><span style=\" font-size:9pt; color:#000000;\">Vivx</span></p><p align=\"center\"><span style=\" font-size:9pt;\">Strona domowa: </span><a href=\"http://lixium.pl\"><span style=\" font-size:9pt; text-decoration: underline; color:#0000ff;\">http://lixium.pl<br/></span></a><span style=\" font-size:9pt;\">Forum Minecraft: </span><a href=\"http://minecraft.lixium.pl/forum\"><span style=\" font-size:9pt; text-decoration: underline; color:#0000ff;\">http://minecraft.lixium.pl/forum</span></a></p><p align=\"center\"><span style=\" font-size:9pt; color:#000000;\">Wszelkie prawa zastrze\305\274one Lixium \302\256 2012-2013</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("AboutDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:9pt;\">Lixium Launcher v1.1.0.99<br/>Autor: </span><span style=\" font-size:9pt; color:#000000;\">adamros<br/></span><span style=\" font-size:9pt;\">Grafika: </span><span style=\" font-size:9pt; color:#000000;\">ReQntar</span><span style=\" font-size:9pt;\">, </span><span style=\" font-size:9pt; color:#000000;\">Vivx</span></p><p align=\"center\"><span style=\" font-size:9pt;\">Strona domowa: </span><a href=\"http://lixium.pl\"><span style=\" font-size:9pt; text-decoration: underline; color:#0000ff;\">http://lixium.pl<br/></span></a><span style=\" font-size:9pt;\">Forum Minecraft: </span><a href=\"http://minecraft.lixium.pl/forum\"><span style=\" font-size:9pt; text-decoration: underline; color:#0000ff;\">http://forum.lixium.pl/minecraft</span></a></p><p align=\"center\"><span style=\" font-size:9pt; color:#000000;\">Wszelkie prawa zastrze\305\274one Lixium \302\256 2013</span></p></body></html>", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

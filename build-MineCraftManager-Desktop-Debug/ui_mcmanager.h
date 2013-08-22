@@ -1,8 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mcmanager.ui'
 **
-** Created: Fri 7. Jun 10:28:21 2013
-**      by: Qt User Interface Compiler version 4.8.4
+** Created by: Qt User Interface Compiler version 4.8.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -23,7 +22,6 @@
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
-#include <QtWebKit/QWebView>
 
 QT_BEGIN_NAMESPACE
 
@@ -32,8 +30,6 @@ class Ui_MCManager
 public:
     QWidget *centralWidget;
     QGroupBox *groupBox;
-    QLabel *label;
-    QLabel *label_2;
     QLineEdit *usernameField;
     QLineEdit *passwordField;
     QPushButton *loginButton;
@@ -41,7 +37,6 @@ public:
     QPushButton *configButton;
     QPushButton *aboutLauncher;
     QLabel *loginMessages;
-    QWebView *mainWebView;
     QGroupBox *groupBox_2;
     QLabel *label_3;
     QLabel *mcinstalledver;
@@ -61,6 +56,8 @@ public:
     QLabel *motd;
     QLabel *playerNum;
     QLabel *players;
+    QPushButton *closeButton;
+    QPushButton *minimizeButton;
 
     void setupUi(QMainWindow *MCManager)
     {
@@ -75,39 +72,39 @@ public:
         MCManager->setMinimumSize(QSize(1000, 600));
         MCManager->setMaximumSize(QSize(1000, 600));
         MCManager->setContextMenuPolicy(Qt::NoContextMenu);
+        MCManager->setWindowOpacity(1);
         MCManager->setAutoFillBackground(false);
-        MCManager->setStyleSheet(QString::fromUtf8("background: url(:/main/resources/bgmain.png) center right;\n"
-"color: rgb(255,255,255);"));
+        MCManager->setStyleSheet(QString::fromUtf8("QMainWindow > QWidget {\n"
+"	background: transparent url(:/main/resources/bgmain.png) center right;\n"
+"	border-radius: 5px;\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"* {\n"
+"	color: rgb(255,255,255);\n"
+"}"));
         MCManager->setUnifiedTitleAndToolBarOnMac(true);
         centralWidget = new QWidget(MCManager);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(10, 450, 361, 141));
+        groupBox->setGeometry(QRect(680, 70, 311, 141));
         groupBox->setStyleSheet(QString::fromUtf8("background: rgba(0,0,0,150);"));
-        label = new QLabel(groupBox);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 20, 51, 21));
-        label->setStyleSheet(QString::fromUtf8("background: transparent;"));
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 50, 51, 21));
-        label_2->setStyleSheet(QString::fromUtf8("background: transparent;"));
         usernameField = new QLineEdit(groupBox);
         usernameField->setObjectName(QString::fromUtf8("usernameField"));
-        usernameField->setGeometry(QRect(60, 20, 191, 20));
+        usernameField->setGeometry(QRect(10, 20, 191, 20));
         usernameField->setStyleSheet(QString::fromUtf8("background: none;\n"
 "color: rgb(0,0,0);"));
         passwordField = new QLineEdit(groupBox);
         passwordField->setObjectName(QString::fromUtf8("passwordField"));
-        passwordField->setGeometry(QRect(60, 50, 191, 20));
+        passwordField->setGeometry(QRect(10, 50, 191, 20));
         passwordField->setStyleSheet(QString::fromUtf8("background: none;\n"
 "color: rgb(0,0,0);"));
         passwordField->setMaxLength(32767);
         passwordField->setEchoMode(QLineEdit::Password);
         loginButton = new QPushButton(groupBox);
         loginButton->setObjectName(QString::fromUtf8("loginButton"));
-        loginButton->setGeometry(QRect(260, 20, 91, 23));
+        loginButton->setGeometry(QRect(210, 20, 91, 23));
         loginButton->setStyleSheet(QString::fromUtf8("color: rgb(0,0,0);\n"
 "background: none;"));
         loginButton->setAutoDefault(true);
@@ -115,12 +112,12 @@ public:
         loginButton->setFlat(false);
         offlineButton = new QPushButton(groupBox);
         offlineButton->setObjectName(QString::fromUtf8("offlineButton"));
-        offlineButton->setGeometry(QRect(260, 50, 91, 23));
+        offlineButton->setGeometry(QRect(210, 50, 91, 23));
         offlineButton->setStyleSheet(QString::fromUtf8("color: rgb(0,0,0);\n"
 "background: none;"));
         configButton = new QPushButton(groupBox);
         configButton->setObjectName(QString::fromUtf8("configButton"));
-        configButton->setGeometry(QRect(260, 80, 91, 23));
+        configButton->setGeometry(QRect(210, 80, 91, 23));
         configButton->setStyleSheet(QString::fromUtf8("color: rgb(0,0,0);\n"
 "background: none;"));
         aboutLauncher = new QPushButton(groupBox);
@@ -129,15 +126,10 @@ public:
         aboutLauncher->setStyleSheet(QString::fromUtf8("color: rgb(0,0,0); background: none;"));
         loginMessages = new QLabel(groupBox);
         loginMessages->setObjectName(QString::fromUtf8("loginMessages"));
-        loginMessages->setGeometry(QRect(10, 110, 341, 21));
+        loginMessages->setGeometry(QRect(10, 110, 291, 21));
         loginMessages->setStyleSheet(QString::fromUtf8("background:none;\n"
 "color: rgb(255,255,255);"));
         loginMessages->setAlignment(Qt::AlignCenter);
-        mainWebView = new QWebView(centralWidget);
-        mainWebView->setObjectName(QString::fromUtf8("mainWebView"));
-        mainWebView->setGeometry(QRect(580, 10, 411, 431));
-        mainWebView->setContextMenuPolicy(Qt::NoContextMenu);
-        mainWebView->setUrl(QUrl(QString::fromUtf8("about:blank")));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(580, 450, 411, 141));
@@ -185,20 +177,21 @@ public:
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
         comboBox->setEnabled(false);
-        comboBox->setGeometry(QRect(100, 10, 211, 41));
+        comboBox->setGeometry(QRect(100, 90, 211, 41));
         comboBox->setStyleSheet(QString::fromUtf8("color: rgb(0,0,0);\n"
 "background: none;"));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(10, 10, 91, 41));
+        label_8->setGeometry(QRect(10, 90, 91, 41));
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(255,255,255);\n"
 "background: transparent;"));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         groupBox_3->setEnabled(true);
-        groupBox_3->setGeometry(QRect(380, 450, 191, 141));
+        groupBox_3->setGeometry(QRect(10, 450, 190, 140));
         groupBox_3->setStyleSheet(QString::fromUtf8("background: rgba(0,0,0,150);"));
         groupBox_3->setFlat(false);
+        groupBox_3->setCheckable(false);
         label_5 = new QLabel(groupBox_3);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(10, 20, 91, 16));
@@ -224,21 +217,62 @@ public:
         players->setObjectName(QString::fromUtf8("players"));
         players->setGeometry(QRect(100, 100, 81, 16));
         players->setStyleSheet(QString::fromUtf8("background:transparent;"));
+        closeButton = new QPushButton(centralWidget);
+        closeButton->setObjectName(QString::fromUtf8("closeButton"));
+        closeButton->setGeometry(QRect(954, 10, 31, 23));
+        QFont font;
+        font.setPointSize(12);
+        font.setBold(true);
+        font.setWeight(75);
+        closeButton->setFont(font);
+        closeButton->setAutoFillBackground(false);
+        closeButton->setStyleSheet(QString::fromUtf8("QPushButton#closeButton {\n"
+"background: transparent;\n"
+"color: rgb(153, 153, 153);\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QPushButton#closeButton:hover {\n"
+"background: transparent;\n"
+"border: 5px #fff solid;\n"
+"}"));
+        closeButton->setAutoRepeat(false);
+        closeButton->setAutoDefault(false);
+        minimizeButton = new QPushButton(centralWidget);
+        minimizeButton->setObjectName(QString::fromUtf8("minimizeButton"));
+        minimizeButton->setGeometry(QRect(914, 10, 31, 23));
+        QFont font1;
+        font1.setPointSize(15);
+        font1.setBold(true);
+        font1.setWeight(75);
+        minimizeButton->setFont(font1);
+        minimizeButton->setStyleSheet(QString::fromUtf8("QPushButton#minimizeButton {\n"
+"background: transparent;\n"
+"color: rgb(153, 153, 153);\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QPushButton#minimizeButton:hover {\n"
+"background: transparent;\n"
+"border: 5px #fff solid;\n"
+"}"));
         MCManager->setCentralWidget(centralWidget);
 
         retranslateUi(MCManager);
+        QObject::connect(minimizeButton, SIGNAL(clicked()), MCManager, SLOT(showMinimized()));
+        QObject::connect(closeButton, SIGNAL(clicked()), MCManager, SLOT(close()));
 
         QMetaObject::connectSlotsByName(MCManager);
     } // setupUi
 
     void retranslateUi(QMainWindow *MCManager)
     {
-        MCManager->setWindowTitle(QApplication::translate("MCManager", "Lixium MC Manager", 0, QApplication::UnicodeUTF8));
+        MCManager->setWindowTitle(QApplication::translate("MCManager", "Lixium Launcher", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MCManager", "Logowanie i konfiguracja", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("MCManager", "Nick:", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("MCManager", "Has\305\202o:", 0, QApplication::UnicodeUTF8));
+        usernameField->setPlaceholderText(QApplication::translate("MCManager", "Login/Nick", 0, QApplication::UnicodeUTF8));
         passwordField->setInputMask(QString());
         passwordField->setText(QString());
+        passwordField->setPlaceholderText(QApplication::translate("MCManager", "Has\305\202o", 0, QApplication::UnicodeUTF8));
         loginButton->setText(QApplication::translate("MCManager", "Zaloguj", 0, QApplication::UnicodeUTF8));
         offlineButton->setText(QApplication::translate("MCManager", "Tryb offline", 0, QApplication::UnicodeUTF8));
         configButton->setText(QApplication::translate("MCManager", "Konfiguracja", 0, QApplication::UnicodeUTF8));
@@ -265,6 +299,8 @@ public:
         motd->setText(QApplication::translate("MCManager", "Not implemented", 0, QApplication::UnicodeUTF8));
         playerNum->setText(QApplication::translate("MCManager", "Ilo\305\233\304\207 graczy:", 0, QApplication::UnicodeUTF8));
         players->setText(QApplication::translate("MCManager", "Not implemented", 0, QApplication::UnicodeUTF8));
+        closeButton->setText(QApplication::translate("MCManager", "X", 0, QApplication::UnicodeUTF8));
+        minimizeButton->setText(QApplication::translate("MCManager", "-", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

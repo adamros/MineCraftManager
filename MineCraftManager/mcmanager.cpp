@@ -7,8 +7,11 @@ MCManager::MCManager(Config *configuration, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowFlags(Qt::FramelessWindowHint);
+
     this->messagebox = new QMessageBox(this);
     messagebox->setAutoFillBackground(true);
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     this->setStyleSheet(this->styleSheet() + " QMessageBox, QPushButton { background: none; }");
 

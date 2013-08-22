@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     hashcalc.cpp \
     launcherclass.cpp \
     splashscreen.cpp \
-    simpleencrypt.cpp
+    simpleencrypt.cpp \
+    serverlist.cpp
 
 HEADERS  += mcmanager.h \
     config.h \
@@ -40,7 +41,8 @@ HEADERS  += mcmanager.h \
     launcherclass.h \
     enumstruct.h \
     splashscreen.h \
-    simpleencrypt.h
+    simpleencrypt.h \
+    serverlist.h
 
 FORMS    += mcmanager.ui \
     aboutdialog.ui \

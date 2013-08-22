@@ -1,8 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'configdialog.ui'
 **
-** Created: Fri 7. Jun 10:28:21 2013
-**      by: Qt User Interface Compiler version 4.8.4
+** Created by: Qt User Interface Compiler version 4.8.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -58,7 +57,6 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QCheckBox *d3dAcceleration;
-    QCheckBox *ddrawEnabled;
     QLabel *label_5;
     QCheckBox *xrenderAcceleration;
     QLabel *label_6;
@@ -168,16 +166,12 @@ public:
         d3dAcceleration = new QCheckBox(groupBox_3);
         d3dAcceleration->setObjectName(QString::fromUtf8("d3dAcceleration"));
         d3dAcceleration->setGeometry(QRect(30, 100, 201, 17));
-        ddrawEnabled = new QCheckBox(groupBox_3);
-        ddrawEnabled->setObjectName(QString::fromUtf8("ddrawEnabled"));
-        ddrawEnabled->setEnabled(false);
-        ddrawEnabled->setGeometry(QRect(30, 120, 201, 17));
         label_5 = new QLabel(groupBox_3);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(10, 160, 201, 16));
+        label_5->setGeometry(QRect(10, 140, 201, 16));
         xrenderAcceleration = new QCheckBox(groupBox_3);
         xrenderAcceleration->setObjectName(QString::fromUtf8("xrenderAcceleration"));
-        xrenderAcceleration->setGeometry(QRect(30, 180, 201, 17));
+        xrenderAcceleration->setGeometry(QRect(30, 160, 201, 17));
         label_6 = new QLabel(groupBox_2);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(10, 20, 111, 21));
@@ -211,7 +205,7 @@ public:
         QObject::connect(buttonBox, SIGNAL(accepted()), ConfigDialog, SLOT(accept()));
         QObject::connect(buttonBox, SIGNAL(rejected()), ConfigDialog, SLOT(reject()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ConfigDialog);
@@ -241,7 +235,6 @@ public:
         label_3->setText(QApplication::translate("ConfigDialog", "Wszystkie systemy:", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("ConfigDialog", "Tylko Windows:", 0, QApplication::UnicodeUTF8));
         d3dAcceleration->setText(QApplication::translate("ConfigDialog", "Akceleracja Direct3D", 0, QApplication::UnicodeUTF8));
-        ddrawEnabled->setText(QApplication::translate("ConfigDialog", "W\305\202\304\205cz DirectDraw", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("ConfigDialog", "Tylko Linux, BSD i Solaris:", 0, QApplication::UnicodeUTF8));
         xrenderAcceleration->setText(QApplication::translate("ConfigDialog", "Akceleracja XRender (tylko Java 7)", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("ConfigDialog", "Pami\304\231\304\207 pocz\304\205tkowa:", 0, QApplication::UnicodeUTF8));

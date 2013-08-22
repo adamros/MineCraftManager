@@ -69,7 +69,7 @@ void ConfigDialog::save()
     this->config->writeMapElement(JVM, "force64bit", "text", QString::number(ui->force64bit->isChecked()));
     this->config->writeMapElement(JVM, "hwOpenglAcceleration", "text", QString::number(ui->openglAcceleration->isChecked()));
     this->config->writeMapElement(JVM, "d3dAcceleration", "text", QString::number(ui->d3dAcceleration->isChecked()));
-    this->config->writeMapElement(JVM, "ddrawEnabled", "text", QString::number(ui->ddrawEnabled->isChecked()));
+    //this->config->writeMapElement(JVM, "ddrawEnabled", "text", QString::number(ui->ddrawEnabled->isChecked()));
     this->config->writeMapElement(JVM, "xrenderAcceleration", "text", QString::number(ui->xrenderAcceleration->isChecked()));
 
     this->config->writeFile("config/config.xml");
