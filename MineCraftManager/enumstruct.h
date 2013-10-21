@@ -27,10 +27,10 @@ enum UpdateState {
 };
 
 enum UpdateFlag {
+    KEEP,
     FORCEUPDATE,
     DELETE,
-    REINSTALL,
-    KEEP
+    REINSTALL
 };
 
 enum XMLSection {

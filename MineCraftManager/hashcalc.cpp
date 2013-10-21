@@ -24,9 +24,8 @@ void HashCalc::run()
             QString hash = QString(QCryptographicHash::hash(tmpFile.readAll(), QCryptographicHash::Md5).toHex());
 
             QMap<QString, QString> map;
-            map.insert("text", finfo.fileName());
+            map.insert("text", finfo.filePath());
             map.insert("checksum", hash);
-            map.insert("dir", finfo.filePath());
 
             hashMap->insert("file", map);
 

@@ -25,7 +25,7 @@ public:
     void checkLauncherUpdate();
     void doLauncherUpdate(QString file);
     void checkClientUpdate();
-    void doClientUpdate();
+    void doClientUpdate(QString file);
 
 signals:
     void sendMessage(QString type, QString message);
@@ -34,6 +34,9 @@ signals:
 private:
     QUrl updateClientUrl;
     QUrl updateLauncherUrl;
+
+    QMultiMap<QString, QMap<QString, QString> > filesToDownload;
+    QMap<QString, UpdateFlag> fileFlags;
 
     QNetworkAccessManager *nam;
     QQueue<UpFile> downloadQueue;
@@ -45,7 +48,9 @@ private:
 
     QDir directory;
 
-    QMap<QString,QString> prepareUpdateList(Config *updateConfig);
+    QMultiMap<QString, QMap<QString, QString> > prepareUpdateList(Config *updateConfig);
+
+    void processFlags();
 
 private slots:
     void replyFinished();

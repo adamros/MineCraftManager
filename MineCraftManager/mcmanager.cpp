@@ -107,10 +107,14 @@ bool MCManager::launchGame()
         launchClass.addParam("-d64");
     if (Config::toBool(this->config->readMapElement(JVM, "hwOpenglAcceleration", "text")))
         launchClass.addParam("-Dsun.java2d.opengl=true");
+#ifdef Q_WS_WIN
     if (Config::toBool(this->config->readMapElement(JVM, "d3dAcceleration", "text")))
         launchClass.addParam("-Dsun.java2d.d3d=true");
+#endif
+#ifdef Q_WS_X11
     if (Config::toBool(this->config->readMapElement(JVM, "xrenderAcceleration", "text")))
         launchClass.addParam("-Dsun.java2d.xrender=true");
+#endif
 
     QString params = this->config->readMapElement(JVM, "additionalParams", "text");
     if (!params.isEmpty() || params.trimmed() != "")

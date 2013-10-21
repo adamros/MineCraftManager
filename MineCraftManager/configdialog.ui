@@ -82,9 +82,9 @@ color: rgb(0,0,0);</string>
      <widget class="QCheckBox" name="storeLastUser">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>20</y>
-        <width>351</width>
+        <width>371</width>
         <height>17</height>
        </rect>
       </property>
@@ -130,11 +130,12 @@ color: rgb(0,0,0);</string>
         <x>30</x>
         <y>110</y>
         <width>331</width>
-        <height>20</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>Zaloguj i pokaż panel użytkownika oraz przycisk uruchamiania gry</string>
+       <string>Zaloguj i pokaż panel użytkownika oraz
+przycisk uruchamiania gry</string>
       </property>
       <property name="checkable">
        <bool>true</bool>
@@ -143,14 +144,14 @@ color: rgb(0,0,0);</string>
      <widget class="QCheckBox" name="storePassword">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>40</y>
         <width>351</width>
         <height>17</height>
        </rect>
       </property>
       <property name="text">
-       <string>Przechowuj hasło w postaci zaszyfrowanej (opcja eksperymentalna)</string>
+       <string>Przechowuj hasło w postaci zaszyfrowanej</string>
       </property>
      </widget>
     </widget>
@@ -195,7 +196,7 @@ color: rgb(0,0,0);</string>
        </rect>
       </property>
       <property name="text">
-       <string>Częstotliwość odświeżania statusu:</string>
+       <string>Częstotliwość odświeżania:</string>
       </property>
      </widget>
      <widget class="QSpinBox" name="queryRefresh">
@@ -219,7 +220,7 @@ color: rgb(0,0,0);</string>
        <rect>
         <x>110</x>
         <y>70</y>
-        <width>46</width>
+        <width>61</width>
         <height>21</height>
        </rect>
       </property>
@@ -227,6 +228,19 @@ color: rgb(0,0,0);</string>
        <string>sekund</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>601</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Aktualizator</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_jvm">
@@ -292,7 +306,7 @@ color: rgb(0,0,0);</string>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#ff0000;&quot;&gt;Bez ruszania tych ustawień wszystko powinno działać poprawnie.&lt;br/&gt;Wszelkich zmian dokonujesz na własną odpowiedzialność!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#ff0000;&quot;&gt;Bez zmiany tych ustawień wszystko powinno działać poprawnie.&lt;br/&gt;Wszelkich zmian dokonujesz na własną odpowiedzialność!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_2">
@@ -325,11 +339,12 @@ color: rgb(0,0,0);</string>
          <x>30</x>
          <y>40</y>
          <width>201</width>
-         <height>17</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="text">
-        <string>Sprzętowa akceleracja OpenGL</string>
+        <string>Sprzętowa akceleracja
+OpenGL</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_3">
@@ -349,7 +364,7 @@ color: rgb(0,0,0);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
+         <y>90</y>
          <width>201</width>
          <height>16</height>
         </rect>
@@ -362,7 +377,7 @@ color: rgb(0,0,0);</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>100</y>
+         <y>110</y>
          <width>201</width>
          <height>17</height>
         </rect>
@@ -375,7 +390,7 @@ color: rgb(0,0,0);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>140</y>
+         <y>150</y>
          <width>201</width>
          <height>16</height>
         </rect>
@@ -388,13 +403,14 @@ color: rgb(0,0,0);</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>160</y>
+         <y>170</y>
          <width>201</width>
-         <height>17</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="text">
-        <string>Akceleracja XRender (tylko Java 7)</string>
+        <string>Akceleracja XRender
+(tylko Java 7)</string>
        </property>
       </widget>
      </widget>
@@ -403,7 +419,7 @@ color: rgb(0,0,0);</string>
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>111</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -414,7 +430,7 @@ color: rgb(0,0,0);</string>
      <widget class="QSpinBox" name="minHeap">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>160</x>
         <y>20</y>
         <width>61</width>
         <height>22</height>
@@ -433,7 +449,7 @@ color: rgb(0,0,0);</string>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>230</x>
         <y>20</y>
         <width>46</width>
         <height>20</height>
@@ -448,7 +464,7 @@ color: rgb(0,0,0);</string>
        <rect>
         <x>10</x>
         <y>50</y>
-        <width>101</width>
+        <width>151</width>
         <height>16</height>
        </rect>
       </property>
@@ -459,7 +475,7 @@ color: rgb(0,0,0);</string>
      <widget class="QSpinBox" name="maxHeap">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>160</x>
         <y>50</y>
         <width>61</width>
         <height>22</height>
@@ -478,7 +494,7 @@ color: rgb(0,0,0);</string>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>230</x>
         <y>50</y>
         <width>46</width>
         <height>20</height>
@@ -491,14 +507,73 @@ color: rgb(0,0,0);</string>
      <widget class="QCheckBox" name="force64bit">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>10</x>
         <y>80</y>
-        <width>311</width>
+        <width>321</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tryb 64-bitowy (systemy i Java 64-bit)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>101</width>
         <height>17</height>
        </rect>
       </property>
       <property name="text">
-       <string>Wymuś tryb 64-bitowy (tylko systemy oraz Java 64-bit)</string>
+       <string>TweakerClass: </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="tweakerClass">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>129</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>161</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Parametry dodatkowe:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="additionalParamsInput">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>331</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>210</y>
+        <width>301</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-style:italic;&quot;&gt;Uwaga: nie należy wpisywać w to pole opcji takich jak:&lt;br/&gt;Xms, Xmx, d64, czy też opcji Djava2d.&lt;br/&gt;Te parametry launcher dodaje automatycznie!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>

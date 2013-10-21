@@ -15,7 +15,7 @@ ConfigDialog::ConfigDialog(Config *&configuration, QWidget *parent) :
     ui->storeLastUser->setChecked(Config::toBool(this->config->readMapElement(GENERAL, "storeLastUser", "text")));
     ui->storePassword->setChecked(Config::toBool(this->config->readMapElement(GENERAL, "storePassword", "text")));
 
-    /* Implemented for use in the future
+    /* Implemented for future use
     if (this->config->readMapElement(GENERAL, "loginMode", "text").toInt() == 0)
     {
         ui->loginAndLaunch->setChecked(true);
@@ -39,9 +39,19 @@ ConfigDialog::ConfigDialog(Config *&configuration, QWidget *parent) :
     ui->force64bit->setChecked(Config::toBool(this->config->readMapElement(JVM, "force64bit", "text")));
 
     ui->openglAcceleration->setChecked(Config::toBool(this->config->readMapElement(JVM, "hwOpenglAcceleration", "text")));
+#ifdef Q_WS_WIN
     ui->d3dAcceleration->setChecked(Config::toBool(this->config->readMapElement(JVM, "d3dAcceleration", "text")));
     //ui->ddrawEnabled->setChecked(Config::toBool(this->config->readMapElement(JVM, "ddrawEnabled", "text")));
+#else
+    ui->d3dAcceleration->setChecked(false);
+    ui->d3dAcceleration->setEnabled(false);
+#endif
+#ifdef Q_WS_X11
     ui->xrenderAcceleration->setChecked(Config::toBool(this->config->readMapElement(JVM, "xrenderAcceleration", "text")));
+#else
+    ui->xrenderAcceleration->setChecked(false);
+    ui->xrenderAcceleration->setEnabled(false);
+#endif
 
     this->fileDialogSetup(QFileDialog::Directory, ui->javaInstallDir);
 

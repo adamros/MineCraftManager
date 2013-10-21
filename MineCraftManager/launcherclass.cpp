@@ -10,7 +10,7 @@ LauncherClass::LauncherClass(QString workingDir, QString username, QString sessi
     this->fileTools = new FileUtils(NULL);
 }
 
-/* Detect 64-bit Windows system (Qt4 is 32-bit when compiled with MinGW) */
+/* Detect 64-bit Windows system (Qt4 is 32-bit if was compiled with MinGW) */
 bool LauncherClass::is64Windows()
 {
 #if defined (Q_WS_WIN)
